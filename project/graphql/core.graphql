@@ -1,0 +1,198 @@
+# metamodel_version: 1.7.0
+type Agent
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type AttributeConcept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type AttributeValue
+  {
+    attribute: AttributeConcept
+    target: Concept
+    numericValue: Float
+    valueRange: ValueRange
+    ratio: Ratio
+    unit: UnitConcept
+  }
+
+type Concept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type Container
+  {
+    observables: [Observable]
+    observations: [Observation]
+    concepts: [Concept]
+    events: [Event]
+    investigations: [Investigation]
+    relationships: [Relationship]
+  }
+
+type DataObject
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type Duration
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    startsAt: TimePoint
+    endsAt: TimePoint
+    happensAt: TimePoint
+    hasDuration: Duration
+    isOngoingAsOf: TimePoint
+  }
+
+type Event
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasDuration: Duration
+    hasParticipants: [ParticipantInRole]
+  }
+
+type Intangible
+  {
+  }
+
+type Investigation
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasDuration: Duration
+  }
+
+type Location
+  {
+  }
+
+type Observable
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    properties: [AttributeValue]
+  }
+
+type Observation
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasDuration: Duration
+    isAbout: Observable
+    result: AttributeValue
+    partOf: Investigation
+  }
+
+type ParticipantInRole
+  {
+    participant: Thing
+    role: Concept
+  }
+
+type QuantityKind
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type Ratio
+  {
+    numerator: AttributeValue
+    denominator: AttributeValue
+  }
+
+interface Relationship
+  {
+    hasDuration: Duration
+    subject: Thing
+    predicate: Concept
+    object: Thing
+  }
+
+type Thing
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type TimePoint
+  {
+    yearValue: Integer
+    dateValue: Date
+    timeValue: Time
+    datetimeValue: Datetime
+    markerEvent: Event
+    description: String
+  }
+
+type UnitConcept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+  }
+
+type ValueRange
+  {
+    lowerBound: Float
+    upperBound: Float
+  }
+

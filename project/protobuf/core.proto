@@ -1,0 +1,172 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// Represents an Agent
+message Agent
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+message AttributeConcept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+message AttributeValue
+ {
+  attributeConcept attribute = 0
+  concept target = 0
+  float numericValue = 0
+  valueRange valueRange = 0
+  ratio ratio = 0
+  unitConcept unit = 0
+ }
+message Concept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+message Container
+ {
+ repeated  observable observables = 0
+ repeated  observation observations = 0
+ repeated  concept concepts = 0
+ repeated  event events = 0
+ repeated  investigation investigations = 0
+ repeated  relationship relationships = 0
+ }
+message DataObject
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+message Duration
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  timePoint startsAt = 0
+  timePoint endsAt = 0
+  timePoint happensAt = 0
+  duration hasDuration = 0
+  timePoint isOngoingAsOf = 0
+ }
+// A thing that happens to and potentially causally influences one of more participants.
+message Event
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  duration hasDuration = 0
+ repeated  participantInRole hasParticipants = 0
+ }
+message Investigation
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  duration hasDuration = 0
+ }
+// A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain.
+message Observable
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ repeated  attributeValue properties = 0
+ }
+message Observation
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  duration hasDuration = 0
+  observable isAbout = 0
+  attributeValue result = 0
+  investigation partOf = 0
+ }
+message ParticipantInRole
+ {
+  thing participant = 0
+  concept role = 0
+ }
+message QuantityKind
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+// A tuple of two quantities
+message Ratio
+ {
+  attributeValue numerator = 0
+  attributeValue denominator = 0
+ }
+message Thing
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+// A point in time. Can be fully specified, or specified in relative terms.
+message TimePoint
+ {
+  integer yearValue = 0
+  date dateValue = 0
+  time timeValue = 0
+  datetime datetimeValue = 0
+  event markerEvent = 0
+  string description = 0
+ }
+message UnitConcept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+ }
+// A quantity range is a property that can be measured or counted
+message ValueRange
+ {
+  float lowerBound = 0
+  float upperBound = 0
+ }

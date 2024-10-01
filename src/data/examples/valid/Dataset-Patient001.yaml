@@ -1,0 +1,91 @@
+id: example:Dataset-Patient001
+investigations:
+  - id: example:PH0001
+    name: my study
+observables:
+  - id: example:P001
+    type: Patient
+    properties:
+      - attribute: age
+        numeric_value: 20
+        unit: ucum:a
+observations:
+  - id: example:POBS001
+    is_about: example:P001
+    part_of: example:PH0001
+    has_time:
+      start_time:
+        datetime_value: "2020-01-01T00:00:00Z"
+      end_time:
+        datetime_value: "2020-01-01T01:00:00Z"
+    result:
+      attribute: BodyTemperature
+      numeric_value: 30
+      unit: C
+      relative_values:
+        - interpretation: example:Higher
+          reference: example:CONCEPT123
+    procedure_used: example:PROT001
+    device_used: example:DEV001
+    sample_used: example:SAMP001
+  - id: example:POBS002
+    is_about: example:P001
+    part_of: example:PH0001
+    procedure_used: example:PROT002
+    data_used: example:DATA001
+    result:
+      attribute: Presence
+      target: example:VAR1234
+      presence_value: PRESENT
+  - id: example:OBS003
+    is_about: example:P001
+    part_of: example:PH0001
+    result:
+      attribute: Presence
+      target: example:DIS001
+  - id: example:OBS004
+    is_about: example:P001
+    part_of: example:PH0001
+    result:
+      attribute: Level
+      target: Glucose
+      numeric_value: 100
+      unit: mg/dL
+  - id: example:OBS005
+    is_about: example:P001
+    part_of: example:PH0001
+    derived_from:
+      - example:OBS004
+    result:
+      attribute: Presence
+      target: Hyperglycemia
+      presence_value: PRESENT
+events:
+  - id: example:EVENT001
+    name: accident
+    has_participants:
+      - role: affected
+        participant: example:P001
+  - id: example:EVENT002
+    name: drug treatment
+    properties:
+      - attribute: dose
+        target: example:DRUG001
+        numeric_value: 20
+        unit: mg
+      - attribute: route
+        qualitative_value: oral
+    has_participants:
+      - role: affected
+        participant: example:P001
+    has_time:
+      start_time:
+        datetime_value: "2020-01-01T00:00:00Z"
+      end_time:
+        datetime_value: "2020-01-01T01:00:00Z"
+      recurring:
+        count: 1
+        period_unit: d
+
+
+

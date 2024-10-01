@@ -1,0 +1,31 @@
+id: https://w3id.org/comet/enums/landform_enum
+name: landform_enum
+title: Controlled Vocabulary for Landform
+license: MIT
+see_also:
+  - https://linkml.github.io/linkml-common
+
+prefixes:
+  linkml_common: https://w3id.org/linkml-common/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  fhir: http://hl7.org/fhir/
+  omopschema: http://example.org/omop/
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+default_prefix: linkml_common
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+
+  LandformEnum:
+    reachable_from:
+      source_nodes:
+        - ENVO:01000813
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf

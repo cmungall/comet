@@ -1,0 +1,796 @@
+id: https://w3id.org/comet/core
+name: comet-core
+title: comet-core
+description: |-
+  Common Observational Model: Core
+license: MIT
+see_also:
+  - https://linkml.github.io/comet
+
+prefixes:
+  comet: https://w3id.org/comet/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  fhir: http://hl7.org/fhir/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  dcterms: http://purl.org/dc/terms/
+  bibo: http://purl.org/ontology/bibo/
+  oboe-core: http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#
+  omopschema: http://example.org/omop/
+  wgs84: http://www.w3.org/2003/01/geo/wgs84_pos#
+  om: http://www.opengis.net/om/2.0
+  prov: http://www.w3.org/ns/prov#
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  example: http://example.org/
+  _base: http://example.org/
+  mixs: http://w3id.org/mixs/
+  ucum: http://unitsofmeasure.org/
+default_prefix: comet
+default_range: string
+
+imports:
+  - linkml:types
+  - enums/data_absent_reason
+
+classes:
+
+  Thing:
+    class_uri: schema:Thing
+    slots:
+      - id
+      - name
+      - description
+      - type
+      - classification
+      - ontology_types
+      - has_location
+      - has_time
+      - metadata
+
+  Intangible:
+    close_mappings:
+      - schema:Intangible
+
+  DomainEntity:
+    abstract: true
+    is_a: Thing
+
+  InvestigativeEntity:
+    abstract: true
+    is_a: Thing
+
+  Observable:
+    description: A concrete or abstract entity that has been observed or measured.
+      Examples include a person, a region of the earth, a cell type, a tree, a
+      mountain.
+    is_a: DomainEntity
+    exact_mappings:
+      - oboe-core:Entity
+    attributes:
+      properties:
+        range: AttributeValue
+        multivalued: true
+        inlined_as_list: true
+      case_or_control:
+        range: CaseOrControlEnum
+
+  Observation:
+    is_a: InvestigativeEntity
+    close_mappings:
+      - schema:PropertyValue
+      - oboe-core:Measurement
+    attributes:
+      is_about:
+        exact_mappings:
+          - oboe-core:ofEntity
+        range: Observable
+      result:
+        range: AttributeValue
+        exact_mappings:
+          - om:result
+      part_of:
+        range: Investigation
+      performer:
+        range: Agent
+        exact_mappings:
+          - prov:wasAssociatedWith  ## todo check
+          - fhir:performer
+      method:
+        range: Concept
+      device_used:
+        range: Device
+      procedure_used:
+        range: Procedure
+      procedure_configuration:
+        range: ProcedureConfiguration
+      sample_used:
+        range: Sample
+      data_used:
+        range: DataObject
+      derived_from:
+        range: Observation
+        multivalued: true
+    slots:
+      - has_time
+
+  StructuredValueComponent:
+    abstract: true
+    is_a: Intangible
+
+  AttributeValue:
+    is_a: StructuredValueComponent
+    close_mappings:
+      - schema:PropertyValue
+      - schema:Quantity
+      - fhir:Quantity
+    attributes:
+      attribute:
+        range: AttributeConcept
+        exact_mappings:
+          - oboe-core:ofCharacteristic
+          - om:observedProperty
+      target:
+        range: Concept
+      numeric_value:
+        range: float
+        description: The numeric value of the observation
+      presence_value:
+        range: PresenceEnum
+      value_range:
+        range: ValueRange
+        description: The range of the value
+      value_series:
+        range: ValueSeries
+        description: A series of values
+      ratio:
+        range: Ratio
+        description: The ratio of the value
+      qualitative_value:
+        range: Concept
+        description: A qualitative value
+      unit:
+        range: UnitConcept
+        exact_mappings:
+          - schema:unitCode
+          - qudt:unit
+      relative_values:
+        range: RelativeValue
+        multivalued: true
+        inlined_as_list: true
+      value_absence_reason:
+        range: Concept
+        description: The reason for the absence of a value
+        exact_mappings:
+          - fhir:dataAbsentReason
+    exact_mappings:
+      - schema:Quantity
+
+  Ratio:
+    description: >-
+      A tuple of two quantities
+    class_uri: fhir:Ratio
+    is_a: StructuredValueComponent
+    attributes:
+      numerator:
+        range: AttributeValue
+        description: The numerator of the ratio
+      denominator:
+        range: AttributeValue
+        description: The denominator of the ratio
+
+  ValueRange:
+    description: >-
+      A quantity range is a property that can be measured or counted
+    class_uri: fhir:Range
+    is_a: StructuredValueComponent
+    attributes:
+      lower_bound:
+        range: float
+        description: The lower bound of the range
+      upper_bound:
+        range: float
+        description: The upper bound of the range
+
+  ValueSeries:
+    description: >-
+      A series of values
+    is_a: StructuredValueComponent
+    attributes:
+      values:
+        range: float
+        array:
+          exact_number_dimensions: 1
+
+
+  RelativeValue:
+    description: >-
+      A value that is relative to another value
+    is_a: StructuredValueComponent
+    attributes:
+      interpretation:
+        required: true
+        range: Concept
+        description: The type of relationship, e.g. high
+      reference:
+        range: Concept
+      target_value:
+        range: AttributeValue
+        description: The target value
+      #distribution:
+      #  range: ValueDistribution
+
+  Event:
+    description: A thing that happens to and potentially causally influences
+      one of more participants.
+    comments:
+      - this class should be used for events that affect observables under study,
+        processes such as investigations and assays should not use this
+      - events can also be treated as observations where this suits the analysis,
+        but in general events are not considered to be variables and instead represent
+        some non-varying feature of the effected observables
+    is_a: DomainEntity
+    slots:
+      - has_time
+      - has_participants
+      - properties
+  
+  LocationComponent:
+    abstract: true
+    is_a: Intangible
+
+  Location:
+    is_a: LocationComponent
+    attributes:
+      geo_location:
+        range: GeoLocation
+        description: A string representation of a geolocation
+      geo_box_location:
+        range: GeoBoxLocation
+        description: A string representation of a geobox location
+      named_location:
+        range: Concept
+      relative_location:
+        range: RelativeLocation
+      postal_address:
+        range: PostalAddress
+        description: A postal address
+
+  GeoLocation:
+    is_a: LocationComponent
+    attributes:
+      latitude:
+        range: decimal
+        slot_uri: wgs84:lat
+      longitude:
+        range: decimal
+        slot_uri: wgs84:long
+
+  GeoBoxLocation:
+    is_a: LocationComponent
+    attributes:
+      west_bounding_coordinate:
+        range: decimal
+        description: The westernmost coordinate of the location
+      east_bounding_coordinate:
+        range: decimal
+        description: The easternmost coordinate of the location
+      north_bounding_coordinate:
+        range: decimal
+        description: The northernmost coordinate of the location
+      south_bounding_coordinate:
+        range: decimal
+        description: The southernmost coordinate of the location
+
+  RelativeLocation:
+    is_a: LocationComponent
+    attributes:
+      relationship_type:
+        range: Concept
+      target_location:
+        range: Location
+
+  PostalAddress:
+    description: >-
+      Represents an Address
+    is_a: LocationComponent
+    attributes:
+      street_address:
+        description: The street address
+        exact_mappings:
+          - omopschema:address_1
+      street_address_additional:
+        exact_mappings:
+          - omopschema:address_2
+      city:
+        description: The city
+      state:
+        description: The state
+      postal_code:
+        description: The postal code or zip code
+      country:
+        description: The country
+        range: Concept
+    exact_mappings:
+      - omopschema:CARE_SITE
+      - schema:PostalAddress
+
+  Sample:
+    is_a: Observable
+
+  Investigation:
+    is_a: InvestigativeEntity
+    attributes:
+      objectives:
+        range: string
+      variables:
+        range: Concept
+        multivalued: true
+      hypothesis:
+        range: StudyHypothesis
+      design:
+        range: StudyDesign
+      results:
+        range: StudyResult
+        multivalued: true
+    slots:
+      - has_time
+
+  InformationEntity:
+    is_a: InvestigativeEntity
+
+  InvestigativeProtocol:
+    is_a: Procedure
+    attributes:
+      protocols_io_url:
+        range: uri
+    slot_usage:
+      classification:
+        bindings:
+          - binds_value_of: id
+            range: InvestigativeProtocolEnum
+            obligation_level: RECOMMENDED
+
+  StudyDesign:
+    is_a: Procedure
+    slot_usage:
+      classification:
+        bindings:
+          - binds_value_of: id
+            range: StudyDesignEnum
+            obligation_level: RECOMMENDED
+
+  StudyResult:
+    is_a: InformationEntity
+    attributes:
+      hypothesis:
+        range: StudyHypothesis
+      results:
+        range: AttributeValue
+        multivalued: true
+
+  StudyHypothesis:
+    is_a: InformationEntity
+
+  Agent:
+    is_a: InvestigativeEntity
+    description: Represents an Agent
+    exact_mappings:
+      - prov:Agent
+      - fibo.commons.PartiesAndSituations:Agent
+
+  Organization:
+    is_a: InvestigativeEntity
+
+  Relationship:
+    abstract: true
+    close_mappings:
+      - rdfs:Statement
+    attributes:
+      subject:
+        range: Thing
+      predicate:
+        range: Concept
+      object:
+        range: Thing
+    slots:
+      - has_time
+
+  Temporal:
+    abstract: true
+    is_a: Intangible
+
+  Duration:
+    is_a: Temporal
+    slots:
+      - start_time
+      - end_time
+      - happens_at
+      - is_ongoing_as_of
+      - recurring
+
+  RecurringTemporalWindow:
+    is_a: Temporal
+    attributes:
+      enumerated_times:
+        range: Duration
+      count:
+        range: integer
+      period:
+        range: Duration
+      period_unit:
+        range: UnitConcept
+
+
+  TimePoint:
+    description: A point in time. Can be fully specified, or specified in relative terms.
+    is_a: Temporal
+    slots:
+      - year_value
+      - date_value
+      - time_value
+      - datetime_value
+      - marker_event
+      - description
+    exact_mappings:
+      - fibo.DatesAndTimes:TimeInstant
+
+  ProvenanceComponent:
+    abstract: true
+    is_a: Intangible
+
+
+  CreationHistory:
+    is_a: ProvenanceComponent
+    attributes:
+      actions:
+        range: CreationHistoryAction
+        multivalued: true
+        inlined_as_list: true
+
+  CreationHistoryAction:
+    is_a: ProvenanceComponent
+    attributes:
+      description:
+        range: string
+      roles:
+        range: AgentRole
+        multivalued: true
+
+  AgentRole:
+    is_a: ProvenanceComponent
+    attributes:
+      agent:
+        range: Agent
+      role:
+        range: Concept
+
+  CreationMetadata:
+    is_a: ProvenanceComponent
+    attributes:
+      title:
+        range: string
+        description: The title of the item
+        exact_mappings:
+          - dcterms:title
+      abstract:
+        range: string
+        description: A summary of the item
+      rights:
+        range: string
+        description: Information about rights held in and over the item
+      creators:
+        range: Agent
+        slot_uri: dcterms:creator
+        description: The person or organization who created the work
+        multivalued: true
+      contributors:
+        range: Agent
+        slot_uri: dcterms:contributor
+        description: A person or organization that contributed to the creation of the work
+        multivalued: true
+      contacts:
+        range: Agent
+        slot_uri: schema:contactPoint
+        description: A contact point for a person or organization
+        multivalued: true
+      keywords:
+        range: string
+        slot_uri: schema:keywords
+        description: Keywords or tags used to describe this item
+        multivalued: true
+
+  Concept:
+    is_a: Thing
+
+  UnitConcept:
+    is_a: Concept
+    exact_mappings:
+      - qudt:Unit
+      - oboe-core:Unit
+    id_prefixes:
+      - UO
+      - UCUM
+      - qudt
+
+  QuantityKind:
+    is_a: Concept
+    exact_mappings:
+      - qudt:QuantityKind
+      - fibo.QuantitiesAndUnits:ScalarQuantity
+
+  AttributeConcept:
+    is_a: Concept
+    exact_mappings:
+      - oboe-core:Characteristic
+    id_prefixes:
+      - PATO
+
+  Variable:
+    is_a: Concept
+    attributes:
+      fixed_unit:
+        range: UnitConcept
+
+  ParticipantInRole:
+    is_a: Intangible
+    attributes:
+      participant:
+        range: Thing
+      role:
+        range: Concept
+
+  Device:
+    is_a: InvestigativeEntity
+
+  DataObject:
+    is_a: InvestigativeEntity
+
+  InvestigationSite:
+    is_a: InvestigativeEntity
+
+  Procedure:
+    is_a: InvestigativeEntity
+    close_mappings:
+      - OBI:0000260  ## Plan
+      - OBI:0000272  ## Protocol
+      - OBI:0000070  ## Assay
+    slot_usage:
+      classification:
+        bindings:
+          - binds_value_of: id
+            range: InvestigativeProtocolEnum
+            obligation_level: RECOMMENDED
+
+  State:
+    is_a: Intangible
+    attributes:
+      parameters:
+        range: AttributeValue
+        multivalued: true
+        inlined_as_list: true
+
+  ProcedureConfiguration:
+    is_a: State
+
+  ResultMatrix:
+    is_a: Intangible
+    attributes:
+      values:
+        range: float
+        array:
+          minimum_number_dimensions: 2
+          maximum_number_dimensions: False
+          dimensions:
+            - alias: observables
+
+
+  Dataset:
+    is_a: InvestigativeEntity
+    tree_root: true
+    attributes:
+      observables:
+        range: Observable
+        multivalued: true
+        inlined_as_list: true
+      observations:
+        range: Observation
+        multivalued: true
+        inlined_as_list: true
+      concepts:
+        range: Concept
+        multivalued: true
+        inlined_as_list: true
+      events:
+        range: Event
+        multivalued: true
+        inlined_as_list: true
+      investigations:
+        range: Investigation
+        multivalued: true
+        inlined_as_list: true
+      relationships:
+        range: Relationship
+        multivalued: true
+        inlined_as_list: true
+      agents:
+        range: Agent
+        multivalued: true
+        inlined_as_list: true
+      devices:
+        range: Device
+        multivalued: true
+        inlined_as_list: true
+      samples:
+        range: Sample
+        multivalued: true
+        inlined_as_list: true
+      result_matrices:
+        range: ResultMatrix
+        multivalued: true
+        inlined_as_list: true
+
+
+
+
+
+slots:
+  id:
+    identifier: true
+    slot_uri: schema:identifier
+    range: uriorcurie
+    description: A unique identifier for a thing
+  name:
+    slot_uri: schema:name
+    description: A human-readable name for a thing
+    exact_mappings:
+      - rdfs:label
+  description:
+    slot_uri: schema:description
+    description: A human-readable description for a thing
+  type:
+    range: string
+    designates_type: true
+    description: A type for a thing. The range of this should be a class within the schema.
+      It is intended for schema-based classification. Anything beneath the shoreline of the
+      schema should use `classification`.
+  classification:
+    range: Concept
+    description: A precise classification of the thing, using a concept from an ontology,
+      controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict
+      the range of values which this slot can take, using `values_from`, or bindings.
+  ontology_types:
+    range: Concept
+    multivalued: true
+    description: A collection of concepts that help to classify the thing, using concepts
+       from an ontolology,  thesaurus, or taxonomy.
+  describes:
+    slot_uri: schema:describes
+    range: Thing
+    description: >-
+      The thing that is being described
+  subject:
+    slot_uri: rdf:subject
+    range: Thing
+    description: >-
+      The subject of a relationship
+  object:
+    slot_uri: rdf:object
+    range: Thing
+    description: >-
+      The object of a relationship
+
+  has_participants:
+    range: ParticipantInRole
+    multivalued: true
+
+  has_location:
+    range: Location
+
+  start_time:
+    range: TimePoint
+
+  end_time:
+    range: TimePoint
+
+  happens_at:
+    range: TimePoint
+
+  year_value:
+    range: integer
+    unit:
+      symbol: year
+      ucum_code: a
+
+  date_value:
+    range: date
+
+  time_value:
+    range: time
+
+  datetime_value:
+    range: datetime
+
+  marker_event:
+    range: Event
+
+  has_time:
+    range: Duration
+
+  is_ongoing_as_of:
+    range: TimePoint
+
+  recurring:
+    range: RecurringTemporalWindow
+
+  metadata:
+    range: CreationHistory
+
+  properties:
+    range: AttributeValue
+    multivalued: true
+    inlined_as_list: true
+
+enums:
+
+  RelativeTimeEnum:
+    permissible_values:
+      BEFORE:
+      AFTER:
+      AT_SAME_TIME_AS:
+
+  CaseOrControlEnum:
+    permissible_values:
+      CASE:
+        title: case role in case-control study
+        meaning: OBI:0002492
+      CONTROL:
+        title: control role in case-control study
+        meaning: OBI:0002493
+
+  StudyDesignEnum:
+    reachable_from:
+      source_nodes:
+        - OBI:0500000
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf
+
+  InvestigativeProtocolEnum:
+    reachable_from:
+      source_nodes:
+        - OBI:0000272
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf
+
+  SampleProcessingEnum:
+    reachable_from:
+      source_nodes:
+        - OBI:0000094
+      is_direct: false
+      relationship_types:
+        - rdfs:subClassOf
+
+  PresenceEnum:
+    permissible_values:
+      PRESENT:
+        description: The entity is present
+      ABSENT:
+        description: The entity is absent
+      BELOW_DETECTION_LIMIT:
+        description: The entity is below the detection limit
+      ABOVE_DETECTION_LIMIT:
+        description: The entity is above the detection limit
+
+
+types:
+
+  CountScalar:
+    typeof: integer
+    minimum_value: 0

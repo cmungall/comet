@@ -1,0 +1,62 @@
+id: example:Dataset-EnvSample001
+investigations:
+  - id: example:INV001
+    name: test
+observables:
+  - id: example:SITE001
+    name: some patch of soil in the forest
+    type: Microbiome
+    has_location:
+      geo_location:
+        latitude: 20
+        longitude: 20
+    properties:
+      - attribute: mixs:depth
+        numeric_value: 20
+        unit: M
+      - attribute: mixs:lat
+        numeric_value: 20
+      - attribute: mixs:lon
+        numeric_value: 20
+observations:
+  - id: example:OBS001
+    is_about: example:SITE001
+    part_of: example:INV001
+    has_time:
+      start_time:
+        datetime_value: "2020-01-01T00:00:00Z"
+      end_time:
+        datetime_value: "2020-01-01T01:00:00Z"
+    result:
+      attribute: mixs:temp
+      numeric_value: 30
+      unit: C
+      relative_values:
+       - interpretation: Higher
+         reference: example:CONCEPT123
+    procedure_used: example:PROT001
+    device_used: example:DEV001
+    sample_used: example:SAMP001
+  - id: example:OBS002
+    is_about: example:SITE001
+    part_of: example:INV001
+    procedure_used: example:PROT002  ## e.g. kraken2
+    data_used: example:DATA001
+    result:
+      attribute: Abundance
+      target: NCBITaxon:2
+      numeric_value: 100
+  - id: example:OBS003
+    is_about: example:SITE001
+    part_of: example:INV001
+    result:
+      attribute: Salinity
+      value_absence_reason: BelowDetectionLimit
+events:
+  - id: example:EVENT001
+    name: fire
+    has_participants:
+      - role: affected
+        participant: example:SITE001
+
+

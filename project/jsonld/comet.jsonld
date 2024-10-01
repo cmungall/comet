@@ -1,0 +1,4238 @@
+{
+  "name": "comet",
+  "description": "Common Data Model Elements",
+  "title": "comet",
+  "see_also": [
+    "https://linkml.github.io/comet"
+  ],
+  "id": "https://w3id.org/comet",
+  "imports": [
+    "linkml:types",
+    "core",
+    "healthcare",
+    "enums/data_absent_reason",
+    "bio"
+  ],
+  "license": "MIT",
+  "prefixes": [
+    {
+      "prefix_prefix": "comet",
+      "prefix_reference": "https://w3id.org/comet/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "biolink",
+      "prefix_reference": "https://w3id.org/biolink/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "PATO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
+    },
+    {
+      "prefix_prefix": "example",
+      "prefix_reference": "http://example.org/"
+    }
+  ],
+  "default_prefix": "comet",
+  "default_range": "string",
+  "types": [
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "CountScalar",
+      "definition_uri": "https://w3id.org/comet/CountScalar",
+      "from_schema": "https://w3id.org/comet/core",
+      "typeof": "integer",
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "minimum_value": 0,
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "RelativeTimeEnum",
+      "definition_uri": "https://w3id.org/comet/RelativeTimeEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "permissible_values": [
+        {
+          "text": "BEFORE"
+        },
+        {
+          "text": "AFTER"
+        },
+        {
+          "text": "AT_SAME_TIME_AS"
+        }
+      ]
+    },
+    {
+      "name": "CaseOrControlEnum",
+      "definition_uri": "https://w3id.org/comet/CaseOrControlEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "permissible_values": [
+        {
+          "text": "CASE",
+          "meaning": "OBI:0002492",
+          "title": "case role in case-control study"
+        },
+        {
+          "text": "CONTROL",
+          "meaning": "OBI:0002493",
+          "title": "control role in case-control study"
+        }
+      ]
+    },
+    {
+      "name": "StudyDesignEnum",
+      "definition_uri": "https://w3id.org/comet/StudyDesignEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "reachable_from": {
+        "source_nodes": [
+          "OBI:0500000"
+        ],
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ]
+      }
+    },
+    {
+      "name": "InvestigativeProtocolEnum",
+      "definition_uri": "https://w3id.org/comet/InvestigativeProtocolEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "reachable_from": {
+        "source_nodes": [
+          "OBI:0000272"
+        ],
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ]
+      }
+    },
+    {
+      "name": "SampleProcessingEnum",
+      "definition_uri": "https://w3id.org/comet/SampleProcessingEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "reachable_from": {
+        "source_nodes": [
+          "OBI:0000094"
+        ],
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ]
+      }
+    },
+    {
+      "name": "PresenceEnum",
+      "definition_uri": "https://w3id.org/comet/PresenceEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "permissible_values": [
+        {
+          "text": "PRESENT",
+          "description": "The entity is present"
+        },
+        {
+          "text": "ABSENT",
+          "description": "The entity is absent"
+        },
+        {
+          "text": "BELOW_DETECTION_LIMIT",
+          "description": "The entity is below the detection limit"
+        },
+        {
+          "text": "ABOVE_DETECTION_LIMIT",
+          "description": "The entity is above the detection limit"
+        }
+      ]
+    },
+    {
+      "name": "HealthcareEncounterClassification",
+      "definition_uri": "https://w3id.org/linkml-common/HealthcareEncounterClassification",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "permissible_values": [
+        {
+          "text": "Inpatient Visit",
+          "description": "Person visiting hospital, at a Care Site, in bed, for duration of more than one day, with physicians and other Providers permanently available to deliver service around the clock"
+        },
+        {
+          "text": "Emergency Room Visit",
+          "description": "Person visiting dedicated healthcare institution for treating emergencies, at a Care Site, within one day, with physicians and Providers permanently available to deliver service around the clock"
+        },
+        {
+          "text": "Emergency Room and Inpatient Visit",
+          "description": "Person visiting ER followed by a subsequent Inpatient Visit, where Emergency department is part of hospital, and transition from the ER to other hospital departments is undefined"
+        },
+        {
+          "text": "Non-hospital institution Visit",
+          "description": "Person visiting dedicated institution for reasons of poor health, at a Care Site, long-term or permanently, with no physician but possibly other Providers permanently available to deliver service around the clock"
+        },
+        {
+          "text": "Outpatient Visit",
+          "description": "Person visiting dedicated ambulatory healthcare institution, at a Care Site, within one day, without bed, with physicians or medical Providers delivering service during Visit"
+        },
+        {
+          "text": "Home Visit",
+          "description": "Provider visiting Person, without a Care Site, within one day, delivering service"
+        },
+        {
+          "text": "Telehealth Visit",
+          "description": "Patient engages with Provider through communication media"
+        },
+        {
+          "text": "Pharmacy Visit",
+          "description": "Person visiting pharmacy for dispensing of Drug, at a Care Site, within one day"
+        },
+        {
+          "text": "Laboratory Visit",
+          "description": "Patient visiting dedicated institution, at a Care Site, within one day, for the purpose of a Measurement."
+        },
+        {
+          "text": "Ambulance Visit",
+          "description": "Person using transportation service for the purpose of initiating one of the other Visits, without a Care Site, within one day, potentially with Providers accompanying the Visit and delivering service"
+        },
+        {
+          "text": "Case Management Visit",
+          "description": "Person interacting with healthcare system, without a Care Site, within a day, with no Providers involved, for administrative purposes"
+        }
+      ]
+    },
+    {
+      "name": "CodeSystemEnum",
+      "definition_uri": "http://terminology.hl7.org/CodeSystem/data-absent-reason/CodeSystemEnum",
+      "description": "Used to specify why the normally expected content of the data element is missing.",
+      "from_schema": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+      "permissible_values": [
+        {
+          "text": "unknown",
+          "description": "The value is expected to exist but is not known.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown",
+          "title": "Unknown"
+        },
+        {
+          "text": "asked-unknown",
+          "description": "The source was asked but does not know the value.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown",
+          "is_a": "unknown",
+          "title": "Asked But Unknown"
+        },
+        {
+          "text": "temp-unknown",
+          "description": "There is reason to expect (from the workflow) that the value may become known.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown",
+          "is_a": "unknown",
+          "title": "Temporarily Unknown"
+        },
+        {
+          "text": "not-asked",
+          "description": "The workflow didn't lead to this value being known.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#not-asked",
+          "is_a": "unknown",
+          "title": "Not Asked"
+        },
+        {
+          "text": "asked-declined",
+          "description": "The source was asked but declined to answer.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined",
+          "is_a": "unknown",
+          "title": "Asked But Declined"
+        },
+        {
+          "text": "masked",
+          "description": "The information is not available due to security, privacy or related reasons.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#masked",
+          "title": "Masked"
+        },
+        {
+          "text": "not-applicable",
+          "description": "There is no proper value for this element (e.g. last menstrual period for a male).",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#not-applicable",
+          "title": "Not Applicable"
+        },
+        {
+          "text": "unsupported",
+          "description": "The source system wasn't capable of supporting this element.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#unsupported",
+          "title": "Unsupported"
+        },
+        {
+          "text": "as-text",
+          "description": "The content of the data is represented in the resource narrative.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#as-text",
+          "title": "As Text"
+        },
+        {
+          "text": "error",
+          "description": "Some system or workflow process error means that the information is not available.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#error",
+          "title": "Error"
+        },
+        {
+          "text": "not-a-number",
+          "description": "The numeric value is undefined or unrepresentable due to a floating point processing error.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#not-a-number",
+          "is_a": "error",
+          "title": "Not a Number (NaN)"
+        },
+        {
+          "text": "negative-infinity",
+          "description": "The numeric value is excessively low and unrepresentable due to a floating point processing        error.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#negative-infinity",
+          "is_a": "error",
+          "title": "Negative Infinity (NINF)"
+        },
+        {
+          "text": "positive-infinity",
+          "description": "The numeric value is excessively high and unrepresentable due to a floating point processing        error.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#positive-infinity",
+          "is_a": "error",
+          "title": "Positive Infinity (PINF)"
+        },
+        {
+          "text": "not-performed",
+          "description": "The value is not available because the observation procedure (test, etc.) was not performed.",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#not-performed",
+          "title": "Not Performed"
+        },
+        {
+          "text": "not-permitted",
+          "description": "The value is not permitted in this context (e.g. due to profiles, or the base data types).",
+          "meaning": "http://terminology.hl7.org/CodeSystem/data-absent-reason#not-permitted",
+          "title": "Not Permitted"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://w3id.org/comet/id",
+      "description": "A unique identifier for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/comet/name",
+      "description": "A human-readable name for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "exact_mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "slot_uri": "http://schema.org/name",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/comet/description",
+      "description": "A human-readable description for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "slot_uri": "http://schema.org/description",
+      "owner": "TimePoint",
+      "domain_of": [
+        "Thing",
+        "TimePoint"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "type",
+      "definition_uri": "https://w3id.org/comet/type",
+      "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/type",
+      "designates_type": true,
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ontology_types",
+      "definition_uri": "https://w3id.org/comet/ontology_types",
+      "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/ontology_types",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "Concept",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "describes",
+      "definition_uri": "https://w3id.org/comet/describes",
+      "description": "The thing that is being described",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/describes"
+      ],
+      "slot_uri": "http://schema.org/describes",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "subject",
+      "definition_uri": "https://w3id.org/comet/subject",
+      "description": "The subject of a relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"
+      ],
+      "slot_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "object",
+      "definition_uri": "https://w3id.org/comet/object",
+      "description": "The object of a relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#object"
+      ],
+      "slot_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_participants",
+      "definition_uri": "https://w3id.org/comet/has_participants",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/has_participants",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "ParticipantInRole",
+      "multivalued": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_location",
+      "definition_uri": "https://w3id.org/comet/has_location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/has_location",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "Location",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "start_time",
+      "definition_uri": "https://w3id.org/comet/start_time",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/start_time",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "end_time",
+      "definition_uri": "https://w3id.org/comet/end_time",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/end_time",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "happens_at",
+      "definition_uri": "https://w3id.org/comet/happens_at",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/happens_at",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "year_value",
+      "definition_uri": "https://w3id.org/comet/year_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/year_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "integer",
+      "unit": {
+        "symbol": "year",
+        "ucum_code": "a",
+        "@type": "UnitOfMeasure"
+      },
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "date_value",
+      "definition_uri": "https://w3id.org/comet/date_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/date_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "time_value",
+      "definition_uri": "https://w3id.org/comet/time_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/time_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "time",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "datetime_value",
+      "definition_uri": "https://w3id.org/comet/datetime_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/datetime_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "marker_event",
+      "definition_uri": "https://w3id.org/comet/marker_event",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/marker_event",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "Event",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_time",
+      "definition_uri": "https://w3id.org/comet/has_time",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/has_time",
+      "owner": "Relationship",
+      "domain_of": [
+        "Thing",
+        "Observation",
+        "Event",
+        "Investigation",
+        "Relationship"
+      ],
+      "range": "Duration",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_ongoing_as_of",
+      "definition_uri": "https://w3id.org/comet/is_ongoing_as_of",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/is_ongoing_as_of",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recurring",
+      "definition_uri": "https://w3id.org/comet/recurring",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/recurring",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "RecurringTemporalWindow",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "metadata",
+      "definition_uri": "https://w3id.org/comet/metadata",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/metadata",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "CreationHistory",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "properties",
+      "definition_uri": "https://w3id.org/comet/properties",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/properties",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "AttributeValue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observable__properties",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/properties",
+      "alias": "properties",
+      "owner": "Observable",
+      "domain_of": [
+        "Observable"
+      ],
+      "range": "AttributeValue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observable__case_or_control",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/case_or_control",
+      "alias": "case_or_control",
+      "owner": "Observable",
+      "domain_of": [
+        "Observable"
+      ],
+      "range": "CaseOrControlEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__is_about",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofEntity"
+      ],
+      "slot_uri": "https://w3id.org/comet/is_about",
+      "alias": "is_about",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Observable",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__result",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://www.opengis.net/om/2.0result"
+      ],
+      "slot_uri": "https://w3id.org/comet/result",
+      "alias": "result",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__part_of",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/part_of",
+      "alias": "part_of",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Investigation",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__performer",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://www.w3.org/ns/prov#wasAssociatedWith",
+        "http://hl7.org/fhir/performer"
+      ],
+      "slot_uri": "https://w3id.org/comet/performer",
+      "alias": "performer",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Agent",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__method",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/method",
+      "alias": "method",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__device_used",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/device_used",
+      "alias": "device_used",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Device",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__procedure_used",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/procedure_used",
+      "alias": "procedure_used",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Procedure",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__procedure_configuration",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/procedure_configuration",
+      "alias": "procedure_configuration",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "ProcedureConfiguration",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__sample_used",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/sample_used",
+      "alias": "sample_used",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Sample",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__data_used",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/data_used",
+      "alias": "data_used",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "DataObject",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__derived_from",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/derived_from",
+      "alias": "derived_from",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Observation",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__attribute",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofCharacteristic",
+        "http://www.opengis.net/om/2.0observedProperty"
+      ],
+      "slot_uri": "https://w3id.org/comet/attribute",
+      "alias": "attribute",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "AttributeConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__target",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/target",
+      "alias": "target",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__numeric_value",
+      "description": "The numeric value of the observation",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/numeric_value",
+      "alias": "numeric_value",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__presence_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/presence_value",
+      "alias": "presence_value",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "PresenceEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__value_range",
+      "description": "The range of the value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/value_range",
+      "alias": "value_range",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "ValueRange",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__value_series",
+      "description": "A series of values",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/value_series",
+      "alias": "value_series",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "ValueSeries",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__ratio",
+      "description": "The ratio of the value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/ratio",
+      "alias": "ratio",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Ratio",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__qualitative_value",
+      "description": "A qualitative value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/qualitative_value",
+      "alias": "qualitative_value",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__unit",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://schema.org/unitCode",
+        "http://example.org/UNKNOWN/qudt/unit"
+      ],
+      "slot_uri": "https://w3id.org/comet/unit",
+      "alias": "unit",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "UnitConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__relative_values",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/relative_values",
+      "alias": "relative_values",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "RelativeValue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__value_absence_reason",
+      "description": "The reason for the absence of a value",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://hl7.org/fhir/dataAbsentReason"
+      ],
+      "slot_uri": "https://w3id.org/comet/value_absence_reason",
+      "alias": "value_absence_reason",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ratio__numerator",
+      "description": "The numerator of the ratio",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/numerator",
+      "alias": "numerator",
+      "owner": "Ratio",
+      "domain_of": [
+        "Ratio"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ratio__denominator",
+      "description": "The denominator of the ratio",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/denominator",
+      "alias": "denominator",
+      "owner": "Ratio",
+      "domain_of": [
+        "Ratio"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valueRange__lower_bound",
+      "description": "The lower bound of the range",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/lower_bound",
+      "alias": "lower_bound",
+      "owner": "ValueRange",
+      "domain_of": [
+        "ValueRange"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valueRange__upper_bound",
+      "description": "The upper bound of the range",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/upper_bound",
+      "alias": "upper_bound",
+      "owner": "ValueRange",
+      "domain_of": [
+        "ValueRange"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valueSeries__values",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/values",
+      "array": {
+        "exact_number_dimensions": 1,
+        "@type": "ArrayExpression"
+      },
+      "alias": "values",
+      "owner": "ValueSeries",
+      "domain_of": [
+        "ValueSeries"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relativeValue__interpretation",
+      "description": "The type of relationship, e.g. high",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/interpretation",
+      "alias": "interpretation",
+      "owner": "RelativeValue",
+      "domain_of": [
+        "RelativeValue"
+      ],
+      "range": "Concept",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relativeValue__reference",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/reference",
+      "alias": "reference",
+      "owner": "RelativeValue",
+      "domain_of": [
+        "RelativeValue"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relativeValue__target_value",
+      "description": "The target value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/target_value",
+      "alias": "target_value",
+      "owner": "RelativeValue",
+      "domain_of": [
+        "RelativeValue"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "location__geo_location",
+      "description": "A string representation of a geolocation",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/geo_location",
+      "alias": "geo_location",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "GeoLocation",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "location__geo_box_location",
+      "description": "A string representation of a geobox location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/geo_box_location",
+      "alias": "geo_box_location",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "GeoBoxLocation",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "location__named_location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/named_location",
+      "alias": "named_location",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "location__relative_location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/relative_location",
+      "alias": "relative_location",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "RelativeLocation",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "location__postal_address",
+      "description": "A postal address",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/postal_address",
+      "alias": "postal_address",
+      "owner": "Location",
+      "domain_of": [
+        "Location"
+      ],
+      "range": "PostalAddress",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoLocation__latitude",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/2003/01/geo/wgs84_pos#lat"
+      ],
+      "slot_uri": "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+      "alias": "latitude",
+      "owner": "GeoLocation",
+      "domain_of": [
+        "GeoLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoLocation__longitude",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/2003/01/geo/wgs84_pos#long"
+      ],
+      "slot_uri": "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+      "alias": "longitude",
+      "owner": "GeoLocation",
+      "domain_of": [
+        "GeoLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoBoxLocation__west_bounding_coordinate",
+      "description": "The westernmost coordinate of the location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/west_bounding_coordinate",
+      "alias": "west_bounding_coordinate",
+      "owner": "GeoBoxLocation",
+      "domain_of": [
+        "GeoBoxLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoBoxLocation__east_bounding_coordinate",
+      "description": "The easternmost coordinate of the location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/east_bounding_coordinate",
+      "alias": "east_bounding_coordinate",
+      "owner": "GeoBoxLocation",
+      "domain_of": [
+        "GeoBoxLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoBoxLocation__north_bounding_coordinate",
+      "description": "The northernmost coordinate of the location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/north_bounding_coordinate",
+      "alias": "north_bounding_coordinate",
+      "owner": "GeoBoxLocation",
+      "domain_of": [
+        "GeoBoxLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "geoBoxLocation__south_bounding_coordinate",
+      "description": "The southernmost coordinate of the location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/south_bounding_coordinate",
+      "alias": "south_bounding_coordinate",
+      "owner": "GeoBoxLocation",
+      "domain_of": [
+        "GeoBoxLocation"
+      ],
+      "range": "decimal",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relativeLocation__relationship_type",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/relationship_type",
+      "alias": "relationship_type",
+      "owner": "RelativeLocation",
+      "domain_of": [
+        "RelativeLocation"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relativeLocation__target_location",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/target_location",
+      "alias": "target_location",
+      "owner": "RelativeLocation",
+      "domain_of": [
+        "RelativeLocation"
+      ],
+      "range": "Location",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__street_address",
+      "description": "The street address",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://example.org/omop/address_1"
+      ],
+      "slot_uri": "https://w3id.org/comet/street_address",
+      "alias": "street_address",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__street_address_additional",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://example.org/omop/address_2"
+      ],
+      "slot_uri": "https://w3id.org/comet/street_address_additional",
+      "alias": "street_address_additional",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__city",
+      "description": "The city",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/city",
+      "alias": "city",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__state",
+      "description": "The state",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/state",
+      "alias": "state",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__postal_code",
+      "description": "The postal code or zip code",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/postal_code",
+      "alias": "postal_code",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "postalAddress__country",
+      "description": "The country",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/country",
+      "alias": "country",
+      "owner": "PostalAddress",
+      "domain_of": [
+        "PostalAddress"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigation__objectives",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/objectives",
+      "alias": "objectives",
+      "owner": "Investigation",
+      "domain_of": [
+        "Investigation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigation__variables",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/variables",
+      "alias": "variables",
+      "owner": "Investigation",
+      "domain_of": [
+        "Investigation"
+      ],
+      "range": "Concept",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigation__hypothesis",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/hypothesis",
+      "alias": "hypothesis",
+      "owner": "Investigation",
+      "domain_of": [
+        "Investigation"
+      ],
+      "range": "StudyHypothesis",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigation__design",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/design",
+      "alias": "design",
+      "owner": "Investigation",
+      "domain_of": [
+        "Investigation"
+      ],
+      "range": "StudyDesign",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigation__results",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/results",
+      "alias": "results",
+      "owner": "Investigation",
+      "domain_of": [
+        "Investigation"
+      ],
+      "range": "StudyResult",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "investigativeProtocol__protocols_io_url",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/protocols_io_url",
+      "alias": "protocols_io_url",
+      "owner": "InvestigativeProtocol",
+      "domain_of": [
+        "InvestigativeProtocol"
+      ],
+      "range": "uri",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "studyResult__hypothesis",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/hypothesis",
+      "alias": "hypothesis",
+      "owner": "StudyResult",
+      "domain_of": [
+        "StudyResult"
+      ],
+      "range": "StudyHypothesis",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "studyResult__results",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/results",
+      "alias": "results",
+      "owner": "StudyResult",
+      "domain_of": [
+        "StudyResult"
+      ],
+      "range": "AttributeValue",
+      "multivalued": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__subject",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/subject",
+      "alias": "subject",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__predicate",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/predicate",
+      "alias": "predicate",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__object",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/object",
+      "alias": "object",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recurringTemporalWindow__enumerated_times",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/enumerated_times",
+      "alias": "enumerated_times",
+      "owner": "RecurringTemporalWindow",
+      "domain_of": [
+        "RecurringTemporalWindow"
+      ],
+      "range": "Duration",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recurringTemporalWindow__count",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/count",
+      "alias": "count",
+      "owner": "RecurringTemporalWindow",
+      "domain_of": [
+        "RecurringTemporalWindow"
+      ],
+      "range": "integer",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recurringTemporalWindow__period",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/period",
+      "alias": "period",
+      "owner": "RecurringTemporalWindow",
+      "domain_of": [
+        "RecurringTemporalWindow"
+      ],
+      "range": "Duration",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "recurringTemporalWindow__period_unit",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/period_unit",
+      "alias": "period_unit",
+      "owner": "RecurringTemporalWindow",
+      "domain_of": [
+        "RecurringTemporalWindow"
+      ],
+      "range": "UnitConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationHistory__actions",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/actions",
+      "alias": "actions",
+      "owner": "CreationHistory",
+      "domain_of": [
+        "CreationHistory"
+      ],
+      "range": "CreationHistoryAction",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationHistoryAction__description",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/description",
+      "alias": "description",
+      "owner": "CreationHistoryAction",
+      "domain_of": [
+        "CreationHistoryAction"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationHistoryAction__roles",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/roles",
+      "alias": "roles",
+      "owner": "CreationHistoryAction",
+      "domain_of": [
+        "CreationHistoryAction"
+      ],
+      "range": "AgentRole",
+      "multivalued": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "agentRole__agent",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/agent",
+      "alias": "agent",
+      "owner": "AgentRole",
+      "domain_of": [
+        "AgentRole"
+      ],
+      "range": "Agent",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "agentRole__role",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/role",
+      "alias": "role",
+      "owner": "AgentRole",
+      "domain_of": [
+        "AgentRole"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__title",
+      "description": "The title of the item",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://purl.org/dc/terms/title"
+      ],
+      "slot_uri": "https://w3id.org/comet/title",
+      "alias": "title",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__abstract",
+      "description": "A summary of the item",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/abstract",
+      "alias": "abstract",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__rights",
+      "description": "Information about rights held in and over the item",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/rights",
+      "alias": "rights",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__creators",
+      "description": "The person or organization who created the work",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://purl.org/dc/terms/creator"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/creator",
+      "alias": "creators",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "Agent",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__contributors",
+      "description": "A person or organization that contributed to the creation of the work",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://purl.org/dc/terms/contributor"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/contributor",
+      "alias": "contributors",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "Agent",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__contacts",
+      "description": "A contact point for a person or organization",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/contactPoint"
+      ],
+      "slot_uri": "http://schema.org/contactPoint",
+      "alias": "contacts",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "Agent",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creationMetadata__keywords",
+      "description": "Keywords or tags used to describe this item",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/keywords"
+      ],
+      "slot_uri": "http://schema.org/keywords",
+      "alias": "keywords",
+      "owner": "CreationMetadata",
+      "domain_of": [
+        "CreationMetadata"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "variable__fixed_unit",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/fixed_unit",
+      "alias": "fixed_unit",
+      "owner": "Variable",
+      "domain_of": [
+        "Variable"
+      ],
+      "range": "UnitConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "participantInRole__participant",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/participant",
+      "alias": "participant",
+      "owner": "ParticipantInRole",
+      "domain_of": [
+        "ParticipantInRole"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "participantInRole__role",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/role",
+      "alias": "role",
+      "owner": "ParticipantInRole",
+      "domain_of": [
+        "ParticipantInRole"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "state__parameters",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/parameters",
+      "alias": "parameters",
+      "owner": "State",
+      "domain_of": [
+        "State"
+      ],
+      "range": "AttributeValue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "resultMatrix__values",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/values",
+      "array": {
+        "minimum_number_dimensions": 2,
+        "dimensions": [
+          {
+            "alias": "observables",
+            "@type": "DimensionExpression"
+          }
+        ],
+        "@type": "ArrayExpression"
+      },
+      "alias": "values",
+      "owner": "ResultMatrix",
+      "domain_of": [
+        "ResultMatrix"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__observables",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/observables",
+      "alias": "observables",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Observable",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__observations",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/observations",
+      "alias": "observations",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Observation",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__concepts",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/concepts",
+      "alias": "concepts",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Concept",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__events",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/events",
+      "alias": "events",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Event",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__investigations",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/investigations",
+      "alias": "investigations",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Investigation",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__relationships",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/relationships",
+      "alias": "relationships",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Relationship",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__agents",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/agents",
+      "alias": "agents",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Agent",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__devices",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/devices",
+      "alias": "devices",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Device",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__samples",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/samples",
+      "alias": "samples",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "Sample",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "dataset__result_matrices",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/result_matrices",
+      "alias": "result_matrices",
+      "owner": "Dataset",
+      "domain_of": [
+        "Dataset"
+      ],
+      "range": "ResultMatrix",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "healthcareEncounter__patient",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "slot_uri": "https://w3id.org/linkml-common/patient",
+      "alias": "patient",
+      "owner": "HealthcareEncounter",
+      "domain_of": [
+        "HealthcareEncounter"
+      ],
+      "range": "Patient",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "healthcareEncounter__provider",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "slot_uri": "https://w3id.org/linkml-common/provider",
+      "alias": "provider",
+      "owner": "HealthcareEncounter",
+      "domain_of": [
+        "HealthcareEncounter"
+      ],
+      "range": "HealthcareOrganization",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "InvestigativeProtocol_classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "classification",
+      "domain": "InvestigativeProtocol",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "alias": "classification",
+      "owner": "InvestigativeProtocol",
+      "domain_of": [
+        "InvestigativeProtocol"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "classification",
+      "range": "Concept",
+      "bindings": [
+        {
+          "range": "InvestigativeProtocolEnum",
+          "obligation_level": {
+            "text": "RECOMMENDED",
+            "description": "The metadata element is recommended to be present in the model",
+            "@type": "PermissibleValue"
+          },
+          "binds_value_of": "id",
+          "@type": "EnumBinding"
+        }
+      ],
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "StudyDesign_classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "classification",
+      "domain": "StudyDesign",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "alias": "classification",
+      "owner": "StudyDesign",
+      "domain_of": [
+        "StudyDesign"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "classification",
+      "range": "Concept",
+      "bindings": [
+        {
+          "range": "StudyDesignEnum",
+          "obligation_level": {
+            "text": "RECOMMENDED",
+            "description": "The metadata element is recommended to be present in the model",
+            "@type": "PermissibleValue"
+          },
+          "binds_value_of": "id",
+          "@type": "EnumBinding"
+        }
+      ],
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Procedure_classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "classification",
+      "domain": "Procedure",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "alias": "classification",
+      "owner": "Procedure",
+      "domain_of": [
+        "Procedure"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "classification",
+      "range": "Concept",
+      "bindings": [
+        {
+          "range": "InvestigativeProtocolEnum",
+          "obligation_level": {
+            "text": "RECOMMENDED",
+            "description": "The metadata element is recommended to be present in the model",
+            "@type": "PermissibleValue"
+          },
+          "binds_value_of": "id",
+          "@type": "EnumBinding"
+        }
+      ],
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "HealthcareEncounter_classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "classification",
+      "domain": "HealthcareEncounter",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "alias": "classification",
+      "owner": "HealthcareEncounter",
+      "domain_of": [
+        "HealthcareEncounter"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "classification",
+      "range": "HealthcareEncounterClassification",
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Thing",
+      "definition_uri": "https://w3id.org/comet/Thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "schema:Thing"
+      ],
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Thing",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Intangible",
+      "definition_uri": "https://w3id.org/comet/Intangible",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "schema:Intangible"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Intangible",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "DomainEntity",
+      "definition_uri": "https://w3id.org/comet/DomainEntity",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "abstract": true,
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/DomainEntity",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InvestigativeEntity",
+      "definition_uri": "https://w3id.org/comet/InvestigativeEntity",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "abstract": true,
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/InvestigativeEntity",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Observable",
+      "definition_uri": "https://w3id.org/comet/Observable",
+      "description": "A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain.",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "oboe-core:Entity"
+      ],
+      "is_a": "DomainEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "properties",
+          "range": "AttributeValue",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "case_or_control",
+          "range": "CaseOrControlEnum",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Observable",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Observation",
+      "definition_uri": "https://w3id.org/comet/Observation",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "schema:PropertyValue",
+        "oboe-core:Measurement"
+      ],
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "metadata",
+        "has_time",
+        "observation__is_about",
+        "observation__result",
+        "observation__part_of",
+        "observation__performer",
+        "observation__method",
+        "observation__device_used",
+        "observation__procedure_used",
+        "observation__procedure_configuration",
+        "observation__sample_used",
+        "observation__data_used",
+        "observation__derived_from"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "is_about",
+          "exact_mappings": [
+            "oboe-core:ofEntity"
+          ],
+          "range": "Observable",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "result",
+          "exact_mappings": [
+            "om:result"
+          ],
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "part_of",
+          "range": "Investigation",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "performer",
+          "exact_mappings": [
+            "prov:wasAssociatedWith",
+            "fhir:performer"
+          ],
+          "range": "Agent",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "method",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "device_used",
+          "range": "Device",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "procedure_used",
+          "range": "Procedure",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "procedure_configuration",
+          "range": "ProcedureConfiguration",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "sample_used",
+          "range": "Sample",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "data_used",
+          "range": "DataObject",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "derived_from",
+          "range": "Observation",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Observation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "StructuredValueComponent",
+      "definition_uri": "https://w3id.org/comet/StructuredValueComponent",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "abstract": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/StructuredValueComponent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AttributeValue",
+      "definition_uri": "https://w3id.org/comet/AttributeValue",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "schema:Quantity"
+      ],
+      "close_mappings": [
+        "schema:PropertyValue",
+        "schema:Quantity",
+        "fhir:Quantity"
+      ],
+      "is_a": "StructuredValueComponent",
+      "slots": [
+        "attributeValue__attribute",
+        "attributeValue__target",
+        "attributeValue__numeric_value",
+        "attributeValue__presence_value",
+        "attributeValue__value_range",
+        "attributeValue__value_series",
+        "attributeValue__ratio",
+        "attributeValue__qualitative_value",
+        "attributeValue__unit",
+        "attributeValue__relative_values",
+        "attributeValue__value_absence_reason"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "attribute",
+          "exact_mappings": [
+            "oboe-core:ofCharacteristic",
+            "om:observedProperty"
+          ],
+          "range": "AttributeConcept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "target",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "numeric_value",
+          "description": "The numeric value of the observation",
+          "range": "float",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "presence_value",
+          "range": "PresenceEnum",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "value_range",
+          "description": "The range of the value",
+          "range": "ValueRange",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "value_series",
+          "description": "A series of values",
+          "range": "ValueSeries",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "ratio",
+          "description": "The ratio of the value",
+          "range": "Ratio",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "qualitative_value",
+          "description": "A qualitative value",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "unit",
+          "exact_mappings": [
+            "schema:unitCode",
+            "qudt:unit"
+          ],
+          "range": "UnitConcept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "relative_values",
+          "range": "RelativeValue",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "value_absence_reason",
+          "description": "The reason for the absence of a value",
+          "exact_mappings": [
+            "fhir:dataAbsentReason"
+          ],
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/AttributeValue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Ratio",
+      "definition_uri": "https://w3id.org/comet/Ratio",
+      "description": "A tuple of two quantities",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "fhir:Ratio"
+      ],
+      "is_a": "StructuredValueComponent",
+      "slots": [
+        "ratio__numerator",
+        "ratio__denominator"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "numerator",
+          "description": "The numerator of the ratio",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "denominator",
+          "description": "The denominator of the ratio",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "http://hl7.org/fhir/Ratio",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ValueRange",
+      "definition_uri": "https://w3id.org/comet/ValueRange",
+      "description": "A quantity range is a property that can be measured or counted",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "fhir:Range"
+      ],
+      "is_a": "StructuredValueComponent",
+      "slots": [
+        "valueRange__lower_bound",
+        "valueRange__upper_bound"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "lower_bound",
+          "description": "The lower bound of the range",
+          "range": "float",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "upper_bound",
+          "description": "The upper bound of the range",
+          "range": "float",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "http://hl7.org/fhir/Range",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ValueSeries",
+      "definition_uri": "https://w3id.org/comet/ValueSeries",
+      "description": "A series of values",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "StructuredValueComponent",
+      "slots": [
+        "valueSeries__values"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "values",
+          "array": {
+            "exact_number_dimensions": 1,
+            "@type": "ArrayExpression"
+          },
+          "range": "float",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/ValueSeries",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RelativeValue",
+      "definition_uri": "https://w3id.org/comet/RelativeValue",
+      "description": "A value that is relative to another value",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "StructuredValueComponent",
+      "slots": [
+        "relativeValue__interpretation",
+        "relativeValue__reference",
+        "relativeValue__target_value"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "interpretation",
+          "description": "The type of relationship, e.g. high",
+          "range": "Concept",
+          "required": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "reference",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "target_value",
+          "description": "The target value",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/RelativeValue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Event",
+      "definition_uri": "https://w3id.org/comet/Event",
+      "description": "A thing that happens to and potentially causally influences one of more participants.",
+      "comments": [
+        "this class should be used for events that affect observables under study, processes such as investigations and assays should not use this",
+        "events can also be treated as observations where this suits the analysis, but in general events are not considered to be variables and instead represent some non-varying feature of the effected observables"
+      ],
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "DomainEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "metadata",
+        "has_time",
+        "has_participants",
+        "properties"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Event",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "LocationComponent",
+      "definition_uri": "https://w3id.org/comet/LocationComponent",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "abstract": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/LocationComponent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Location",
+      "definition_uri": "https://w3id.org/comet/Location",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "LocationComponent",
+      "slots": [
+        "location__geo_location",
+        "location__geo_box_location",
+        "location__named_location",
+        "location__relative_location",
+        "location__postal_address"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "geo_location",
+          "description": "A string representation of a geolocation",
+          "range": "GeoLocation",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "geo_box_location",
+          "description": "A string representation of a geobox location",
+          "range": "GeoBoxLocation",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "named_location",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "relative_location",
+          "range": "RelativeLocation",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "postal_address",
+          "description": "A postal address",
+          "range": "PostalAddress",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Location",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "GeoLocation",
+      "definition_uri": "https://w3id.org/comet/GeoLocation",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "LocationComponent",
+      "slots": [
+        "geoLocation__latitude",
+        "geoLocation__longitude"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "latitude",
+          "slot_uri": "wgs84:lat",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "longitude",
+          "slot_uri": "wgs84:long",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/GeoLocation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "GeoBoxLocation",
+      "definition_uri": "https://w3id.org/comet/GeoBoxLocation",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "LocationComponent",
+      "slots": [
+        "geoBoxLocation__west_bounding_coordinate",
+        "geoBoxLocation__east_bounding_coordinate",
+        "geoBoxLocation__north_bounding_coordinate",
+        "geoBoxLocation__south_bounding_coordinate"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "west_bounding_coordinate",
+          "description": "The westernmost coordinate of the location",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "east_bounding_coordinate",
+          "description": "The easternmost coordinate of the location",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "north_bounding_coordinate",
+          "description": "The northernmost coordinate of the location",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "south_bounding_coordinate",
+          "description": "The southernmost coordinate of the location",
+          "range": "decimal",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/GeoBoxLocation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RelativeLocation",
+      "definition_uri": "https://w3id.org/comet/RelativeLocation",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "LocationComponent",
+      "slots": [
+        "relativeLocation__relationship_type",
+        "relativeLocation__target_location"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "relationship_type",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "target_location",
+          "range": "Location",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/RelativeLocation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "PostalAddress",
+      "definition_uri": "https://w3id.org/comet/PostalAddress",
+      "description": "Represents an Address",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "omopschema:CARE_SITE",
+        "schema:PostalAddress"
+      ],
+      "is_a": "LocationComponent",
+      "slots": [
+        "postalAddress__street_address",
+        "postalAddress__street_address_additional",
+        "postalAddress__city",
+        "postalAddress__state",
+        "postalAddress__postal_code",
+        "postalAddress__country"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "street_address",
+          "description": "The street address",
+          "exact_mappings": [
+            "omopschema:address_1"
+          ],
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "street_address_additional",
+          "exact_mappings": [
+            "omopschema:address_2"
+          ],
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "city",
+          "description": "The city",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "state",
+          "description": "The state",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "postal_code",
+          "description": "The postal code or zip code",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "country",
+          "description": "The country",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/PostalAddress",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Sample",
+      "definition_uri": "https://w3id.org/comet/Sample",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Sample",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Investigation",
+      "definition_uri": "https://w3id.org/comet/Investigation",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "metadata",
+        "has_time",
+        "investigation__objectives",
+        "investigation__variables",
+        "investigation__hypothesis",
+        "investigation__design",
+        "investigation__results"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "objectives",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "variables",
+          "range": "Concept",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "hypothesis",
+          "range": "StudyHypothesis",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "design",
+          "range": "StudyDesign",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "results",
+          "range": "StudyResult",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Investigation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InformationEntity",
+      "definition_uri": "https://w3id.org/comet/InformationEntity",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/InformationEntity",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InvestigativeProtocol",
+      "definition_uri": "https://w3id.org/comet/InvestigativeProtocol",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Procedure",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "investigativeProtocol__protocols_io_url",
+        "InvestigativeProtocol_classification"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "protocols_io_url",
+          "range": "uri",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/InvestigativeProtocol",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "StudyDesign",
+      "definition_uri": "https://w3id.org/comet/StudyDesign",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Procedure",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "StudyDesign_classification"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/StudyDesign",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "StudyResult",
+      "definition_uri": "https://w3id.org/comet/StudyResult",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InformationEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "studyResult__hypothesis",
+        "studyResult__results"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "hypothesis",
+          "range": "StudyHypothesis",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "results",
+          "range": "AttributeValue",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/StudyResult",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "StudyHypothesis",
+      "definition_uri": "https://w3id.org/comet/StudyHypothesis",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InformationEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/StudyHypothesis",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Agent",
+      "definition_uri": "https://w3id.org/comet/Agent",
+      "description": "Represents an Agent",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "prov:Agent",
+        "fibo.commons.PartiesAndSituations:Agent"
+      ],
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Agent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Organization",
+      "definition_uri": "https://w3id.org/comet/Organization",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Organization",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Relationship",
+      "definition_uri": "https://w3id.org/comet/Relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "rdfs:Statement"
+      ],
+      "abstract": true,
+      "slots": [
+        "has_time",
+        "relationship__subject",
+        "relationship__predicate",
+        "relationship__object"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "subject",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "predicate",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "object",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Relationship",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Temporal",
+      "definition_uri": "https://w3id.org/comet/Temporal",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "abstract": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Temporal",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Duration",
+      "definition_uri": "https://w3id.org/comet/Duration",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Temporal",
+      "slots": [
+        "start_time",
+        "end_time",
+        "happens_at",
+        "is_ongoing_as_of",
+        "recurring"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Duration",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "RecurringTemporalWindow",
+      "definition_uri": "https://w3id.org/comet/RecurringTemporalWindow",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Temporal",
+      "slots": [
+        "recurringTemporalWindow__enumerated_times",
+        "recurringTemporalWindow__count",
+        "recurringTemporalWindow__period",
+        "recurringTemporalWindow__period_unit"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "enumerated_times",
+          "range": "Duration",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "count",
+          "range": "integer",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "period",
+          "range": "Duration",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "period_unit",
+          "range": "UnitConcept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/RecurringTemporalWindow",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "TimePoint",
+      "definition_uri": "https://w3id.org/comet/TimePoint",
+      "description": "A point in time. Can be fully specified, or specified in relative terms.",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "fibo.DatesAndTimes:TimeInstant"
+      ],
+      "is_a": "Temporal",
+      "slots": [
+        "year_value",
+        "date_value",
+        "time_value",
+        "datetime_value",
+        "marker_event",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/TimePoint",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ProvenanceComponent",
+      "definition_uri": "https://w3id.org/comet/ProvenanceComponent",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "abstract": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/ProvenanceComponent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "CreationHistory",
+      "definition_uri": "https://w3id.org/comet/CreationHistory",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "ProvenanceComponent",
+      "slots": [
+        "creationHistory__actions"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "actions",
+          "range": "CreationHistoryAction",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/CreationHistory",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "CreationHistoryAction",
+      "definition_uri": "https://w3id.org/comet/CreationHistoryAction",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "ProvenanceComponent",
+      "slots": [
+        "creationHistoryAction__description",
+        "creationHistoryAction__roles"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "description",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "roles",
+          "range": "AgentRole",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/CreationHistoryAction",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AgentRole",
+      "definition_uri": "https://w3id.org/comet/AgentRole",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "ProvenanceComponent",
+      "slots": [
+        "agentRole__agent",
+        "agentRole__role"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "agent",
+          "range": "Agent",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "role",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/AgentRole",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "CreationMetadata",
+      "definition_uri": "https://w3id.org/comet/CreationMetadata",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "ProvenanceComponent",
+      "slots": [
+        "creationMetadata__title",
+        "creationMetadata__abstract",
+        "creationMetadata__rights",
+        "creationMetadata__creators",
+        "creationMetadata__contributors",
+        "creationMetadata__contacts",
+        "creationMetadata__keywords"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "title",
+          "description": "The title of the item",
+          "exact_mappings": [
+            "dcterms:title"
+          ],
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "abstract",
+          "description": "A summary of the item",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "rights",
+          "description": "Information about rights held in and over the item",
+          "range": "string",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "creators",
+          "description": "The person or organization who created the work",
+          "slot_uri": "dcterms:creator",
+          "range": "Agent",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "contributors",
+          "description": "A person or organization that contributed to the creation of the work",
+          "slot_uri": "dcterms:contributor",
+          "range": "Agent",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "contacts",
+          "description": "A contact point for a person or organization",
+          "slot_uri": "schema:contactPoint",
+          "range": "Agent",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "keywords",
+          "description": "Keywords or tags used to describe this item",
+          "slot_uri": "schema:keywords",
+          "range": "string",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/CreationMetadata",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Concept",
+      "definition_uri": "https://w3id.org/comet/Concept",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Concept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "UnitConcept",
+      "id_prefixes": [
+        "UO",
+        "UCUM",
+        "qudt"
+      ],
+      "definition_uri": "https://w3id.org/comet/UnitConcept",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "qudt:Unit",
+        "oboe-core:Unit"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/UnitConcept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "QuantityKind",
+      "definition_uri": "https://w3id.org/comet/QuantityKind",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "qudt:QuantityKind",
+        "fibo.QuantitiesAndUnits:ScalarQuantity"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/QuantityKind",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AttributeConcept",
+      "id_prefixes": [
+        "PATO"
+      ],
+      "definition_uri": "https://w3id.org/comet/AttributeConcept",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "oboe-core:Characteristic"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/AttributeConcept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Variable",
+      "definition_uri": "https://w3id.org/comet/Variable",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "variable__fixed_unit"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "fixed_unit",
+          "range": "UnitConcept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Variable",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ParticipantInRole",
+      "definition_uri": "https://w3id.org/comet/ParticipantInRole",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "slots": [
+        "participantInRole__participant",
+        "participantInRole__role"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "participant",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "role",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/ParticipantInRole",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Device",
+      "definition_uri": "https://w3id.org/comet/Device",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Device",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "DataObject",
+      "definition_uri": "https://w3id.org/comet/DataObject",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/DataObject",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "InvestigationSite",
+      "definition_uri": "https://w3id.org/comet/InvestigationSite",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/InvestigationSite",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Procedure",
+      "definition_uri": "https://w3id.org/comet/Procedure",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "OBI:0000260",
+        "OBI:0000272",
+        "OBI:0000070"
+      ],
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "Procedure_classification"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Procedure",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "State",
+      "definition_uri": "https://w3id.org/comet/State",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "slots": [
+        "state__parameters"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "parameters",
+          "range": "AttributeValue",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/State",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ProcedureConfiguration",
+      "definition_uri": "https://w3id.org/comet/ProcedureConfiguration",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "State",
+      "slots": [
+        "state__parameters"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/ProcedureConfiguration",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ResultMatrix",
+      "definition_uri": "https://w3id.org/comet/ResultMatrix",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "slots": [
+        "resultMatrix__values"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "values",
+          "array": {
+            "minimum_number_dimensions": 2,
+            "dimensions": [
+              {
+                "alias": "observables",
+                "@type": "DimensionExpression"
+              }
+            ],
+            "@type": "ArrayExpression"
+          },
+          "range": "float",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/ResultMatrix",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Dataset",
+      "definition_uri": "https://w3id.org/comet/Dataset",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "InvestigativeEntity",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "dataset__observables",
+        "dataset__observations",
+        "dataset__concepts",
+        "dataset__events",
+        "dataset__investigations",
+        "dataset__relationships",
+        "dataset__agents",
+        "dataset__devices",
+        "dataset__samples",
+        "dataset__result_matrices"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "observables",
+          "range": "Observable",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "observations",
+          "range": "Observation",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "concepts",
+          "range": "Concept",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "events",
+          "range": "Event",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "investigations",
+          "range": "Investigation",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "relationships",
+          "range": "Relationship",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "agents",
+          "range": "Agent",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "devices",
+          "range": "Device",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "samples",
+          "range": "Sample",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "result_matrices",
+          "range": "ResultMatrix",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Dataset",
+      "tree_root": true,
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Patient",
+      "definition_uri": "https://w3id.org/linkml-common/Patient",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "exact_mappings": [
+        "fhir:Patient"
+      ],
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/linkml-common/Patient",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Cohort",
+      "definition_uri": "https://w3id.org/linkml-common/Cohort",
+      "description": "A group of patients with a common characteristic",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "exact_mappings": [
+        "omopschema:COHORT"
+      ],
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/linkml-common/Cohort",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HealthcareSite",
+      "definition_uri": "https://w3id.org/linkml-common/HealthcareSite",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "exact_mappings": [
+        "omopschema:CARE_SITE"
+      ],
+      "is_a": "InvestigationSite",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/linkml-common/HealthcareSite",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HealthcareEncounter",
+      "definition_uri": "https://w3id.org/linkml-common/HealthcareEncounter",
+      "description": "An interaction between a patient and one or more healthcare providers",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "exact_mappings": [
+        "omopschema:VISIT_OCCURRENCE"
+      ],
+      "is_a": "Event",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "ontology_types",
+        "has_location",
+        "metadata",
+        "has_time",
+        "has_participants",
+        "properties",
+        "healthcareEncounter__patient",
+        "healthcareEncounter__provider",
+        "HealthcareEncounter_classification"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "patient",
+          "range": "Patient",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "provider",
+          "range": "HealthcareOrganization",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/linkml-common/HealthcareEncounter",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "HealthcareOrganization",
+      "definition_uri": "https://w3id.org/linkml-common/HealthcareOrganization",
+      "description": "An organization that provides healthcare services",
+      "from_schema": "https://w3id.org/linkml-common/healthcare",
+      "is_a": "Organization",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/linkml-common/HealthcareOrganization",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "EnvironmentalMaterial",
+      "definition_uri": "https://w3id.org/comet/EnvironmentalMaterial",
+      "from_schema": "https://w3id.org/comet/bio",
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/EnvironmentalMaterial",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Organism",
+      "definition_uri": "https://w3id.org/comet/Organism",
+      "from_schema": "https://w3id.org/comet/bio",
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Organism",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "OrganismPart",
+      "definition_uri": "https://w3id.org/comet/OrganismPart",
+      "from_schema": "https://w3id.org/comet/bio",
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/OrganismPart",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "OrganismPopulation",
+      "definition_uri": "https://w3id.org/comet/OrganismPopulation",
+      "from_schema": "https://w3id.org/comet/bio",
+      "is_a": "Observable",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/OrganismPopulation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Microbiome",
+      "definition_uri": "https://w3id.org/comet/Microbiome",
+      "from_schema": "https://w3id.org/comet/bio",
+      "is_a": "OrganismPopulation",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_location",
+        "has_time",
+        "metadata",
+        "observable__properties",
+        "observable__case_or_control"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Microbiome",
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.7.0",
+  "source_file": "comet.yaml",
+  "source_file_date": "2024-09-13T18:24:11",
+  "source_file_size": 474,
+  "generation_date": "2024-09-13T18:36:53",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/comet.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    "core.context.jsonld",
+    "healthcare.context.jsonld",
+    "enums/data_absent_reason.context.jsonld",
+    "bio.context.jsonld",
+    {
+      "@base": "https://w3id.org/comet/"
+    }
+  ]
+}

@@ -1,0 +1,1615 @@
+{
+  "name": "comet-core",
+  "description": "Common Observational Model: Core",
+  "title": "comet-core",
+  "see_also": [
+    "https://linkml.github.io/comet"
+  ],
+  "id": "https://w3id.org/comet/core",
+  "imports": [
+    "linkml:types"
+  ],
+  "license": "MIT",
+  "prefixes": [
+    {
+      "prefix_prefix": "comet",
+      "prefix_reference": "https://w3id.org/comet/"
+    },
+    {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "biolink",
+      "prefix_reference": "https://w3id.org/biolink/"
+    },
+    {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    {
+      "prefix_prefix": "BFO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/BFO_"
+    },
+    {
+      "prefix_prefix": "IAO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/IAO_"
+    },
+    {
+      "prefix_prefix": "fhir",
+      "prefix_reference": "http://hl7.org/fhir/"
+    },
+    {
+      "prefix_prefix": "rdfs",
+      "prefix_reference": "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    {
+      "prefix_prefix": "rdf",
+      "prefix_reference": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    },
+    {
+      "prefix_prefix": "dcterms",
+      "prefix_reference": "http://purl.org/dc/terms/"
+    },
+    {
+      "prefix_prefix": "bibo",
+      "prefix_reference": "http://purl.org/ontology/bibo/"
+    },
+    {
+      "prefix_prefix": "oboe-core",
+      "prefix_reference": "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#"
+    }
+  ],
+  "default_prefix": "comet",
+  "default_range": "string",
+  "types": [
+    {
+      "name": "CountScalar",
+      "definition_uri": "https://w3id.org/comet/CountScalar",
+      "from_schema": "https://w3id.org/comet/core",
+      "typeof": "integer",
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "minimum_value": 0,
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "string",
+      "definition_uri": "https://w3id.org/linkml/String",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "integer",
+      "definition_uri": "https://w3id.org/linkml/Integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "boolean",
+      "definition_uri": "https://w3id.org/linkml/Boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "http://www.w3.org/2001/XMLSchema#boolean",
+      "repr": "bool",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "float",
+      "definition_uri": "https://w3id.org/linkml/Float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#float",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "double",
+      "definition_uri": "https://w3id.org/linkml/Double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "http://www.w3.org/2001/XMLSchema#double",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "decimal",
+      "definition_uri": "https://w3id.org/linkml/Decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "http://www.w3.org/2001/XMLSchema#decimal",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "time",
+      "definition_uri": "https://w3id.org/linkml/Time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#time",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date",
+      "definition_uri": "https://w3id.org/linkml/Date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "http://www.w3.org/2001/XMLSchema#date",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "datetime",
+      "definition_uri": "https://w3id.org/linkml/Datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uriorcurie",
+      "definition_uri": "https://w3id.org/linkml/Uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "URIorCURIE",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "curie",
+      "definition_uri": "https://w3id.org/linkml/Curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "Curie",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "uri",
+      "definition_uri": "https://w3id.org/linkml/Uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "ncname",
+      "definition_uri": "https://w3id.org/linkml/Ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NCName",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "objectidentifier",
+      "definition_uri": "https://w3id.org/linkml/Objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "ElementIdentifier",
+      "uri": "http://www.w3.org/ns/shex#iri",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "nodeidentifier",
+      "definition_uri": "https://w3id.org/linkml/Nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "NodeIdentifier",
+      "uri": "http://www.w3.org/ns/shex#nonLiteral",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    }
+  ],
+  "enums": [
+    {
+      "name": "RelativeTimeEnum",
+      "definition_uri": "https://w3id.org/comet/RelativeTimeEnum",
+      "from_schema": "https://w3id.org/comet/core",
+      "permissible_values": [
+        {
+          "text": "BEFORE"
+        },
+        {
+          "text": "AFTER"
+        },
+        {
+          "text": "AT_SAME_TIME_AS"
+        }
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "name": "id",
+      "definition_uri": "https://w3id.org/comet/id",
+      "description": "A unique identifier for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/comet/name",
+      "description": "A human-readable name for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "exact_mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "slot_uri": "http://schema.org/name",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/comet/description",
+      "description": "A human-readable description for a thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "slot_uri": "http://schema.org/description",
+      "owner": "TimePoint",
+      "domain_of": [
+        "Thing",
+        "TimePoint"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "type",
+      "definition_uri": "https://w3id.org/comet/type",
+      "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/type",
+      "designates_type": true,
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "classification",
+      "definition_uri": "https://w3id.org/comet/classification",
+      "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/classification",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ontology_types",
+      "definition_uri": "https://w3id.org/comet/ontology_types",
+      "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/ontology_types",
+      "owner": "Thing",
+      "domain_of": [
+        "Thing"
+      ],
+      "range": "Concept",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "describes",
+      "definition_uri": "https://w3id.org/comet/describes",
+      "description": "The thing that is being described",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://schema.org/describes"
+      ],
+      "slot_uri": "http://schema.org/describes",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "subject",
+      "definition_uri": "https://w3id.org/comet/subject",
+      "description": "The subject of a relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"
+      ],
+      "slot_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "object",
+      "definition_uri": "https://w3id.org/comet/object",
+      "description": "The object of a relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#object"
+      ],
+      "slot_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object",
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_participants",
+      "definition_uri": "https://w3id.org/comet/has_participants",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/has_participants",
+      "owner": "Event",
+      "domain_of": [
+        "Event"
+      ],
+      "range": "ParticipantInRole",
+      "multivalued": true,
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "starts_at",
+      "definition_uri": "https://w3id.org/comet/starts_at",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/starts_at",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ends_at",
+      "definition_uri": "https://w3id.org/comet/ends_at",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/ends_at",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "happens_at",
+      "definition_uri": "https://w3id.org/comet/happens_at",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/happens_at",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "year_value",
+      "definition_uri": "https://w3id.org/comet/year_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/year_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "integer",
+      "unit": {
+        "symbol": "year",
+        "ucum_code": "a",
+        "@type": "UnitOfMeasure"
+      },
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "date_value",
+      "definition_uri": "https://w3id.org/comet/date_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/date_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "time_value",
+      "definition_uri": "https://w3id.org/comet/time_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/time_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "time",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "datetime_value",
+      "definition_uri": "https://w3id.org/comet/datetime_value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/datetime_value",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "marker_event",
+      "definition_uri": "https://w3id.org/comet/marker_event",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/marker_event",
+      "owner": "TimePoint",
+      "domain_of": [
+        "TimePoint"
+      ],
+      "range": "Event",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_duration",
+      "definition_uri": "https://w3id.org/comet/has_duration",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/has_duration",
+      "owner": "Duration",
+      "domain_of": [
+        "Observation",
+        "Event",
+        "Investigation",
+        "Relationship",
+        "Duration"
+      ],
+      "range": "Duration",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_ongoing_as_of",
+      "definition_uri": "https://w3id.org/comet/is_ongoing_as_of",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/is_ongoing_as_of",
+      "owner": "Duration",
+      "domain_of": [
+        "Duration"
+      ],
+      "range": "TimePoint",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__observables",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/observables",
+      "alias": "observables",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Observable",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__observations",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/observations",
+      "alias": "observations",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Observation",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__concepts",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/concepts",
+      "alias": "concepts",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Concept",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__events",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/events",
+      "alias": "events",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Event",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__investigations",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/investigations",
+      "alias": "investigations",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Investigation",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "container__relationships",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/relationships",
+      "alias": "relationships",
+      "owner": "Container",
+      "domain_of": [
+        "Container"
+      ],
+      "range": "Relationship",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observable__properties",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/properties",
+      "alias": "properties",
+      "owner": "Observable",
+      "domain_of": [
+        "Observable"
+      ],
+      "range": "AttributeValue",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__is_about",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofEntity"
+      ],
+      "slot_uri": "https://w3id.org/comet/is_about",
+      "alias": "is_about",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Observable",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__result",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/result",
+      "alias": "result",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "observation__part_of",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/part_of",
+      "alias": "part_of",
+      "owner": "Observation",
+      "domain_of": [
+        "Observation"
+      ],
+      "range": "Investigation",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__attribute",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofCharacteristic"
+      ],
+      "slot_uri": "https://w3id.org/comet/attribute",
+      "alias": "attribute",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "AttributeConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__target",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/target",
+      "alias": "target",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__numeric_value",
+      "description": "The numeric value of the observation",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/numeric_value",
+      "alias": "numeric_value",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__value_range",
+      "description": "The range of the value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/value_range",
+      "alias": "value_range",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "ValueRange",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__ratio",
+      "description": "The ratio of the value",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/ratio",
+      "alias": "ratio",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "Ratio",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "attributeValue__unit",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "http://schema.org/unitCode",
+        "http://example.org/UNKNOWN/qudt/unit"
+      ],
+      "slot_uri": "https://w3id.org/comet/unit",
+      "alias": "unit",
+      "owner": "AttributeValue",
+      "domain_of": [
+        "AttributeValue"
+      ],
+      "range": "UnitConcept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__subject",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/subject",
+      "alias": "subject",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__predicate",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/predicate",
+      "alias": "predicate",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "relationship__object",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/object",
+      "alias": "object",
+      "owner": "Relationship",
+      "domain_of": [
+        "Relationship"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ratio__numerator",
+      "description": "The numerator of the ratio",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/numerator",
+      "alias": "numerator",
+      "owner": "Ratio",
+      "domain_of": [
+        "Ratio"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ratio__denominator",
+      "description": "The denominator of the ratio",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/denominator",
+      "alias": "denominator",
+      "owner": "Ratio",
+      "domain_of": [
+        "Ratio"
+      ],
+      "range": "AttributeValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valueRange__lower_bound",
+      "description": "The lower bound of the range",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/lower_bound",
+      "alias": "lower_bound",
+      "owner": "ValueRange",
+      "domain_of": [
+        "ValueRange"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "valueRange__upper_bound",
+      "description": "The upper bound of the range",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/upper_bound",
+      "alias": "upper_bound",
+      "owner": "ValueRange",
+      "domain_of": [
+        "ValueRange"
+      ],
+      "range": "float",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "participantInRole__participant",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/participant",
+      "alias": "participant",
+      "owner": "ParticipantInRole",
+      "domain_of": [
+        "ParticipantInRole"
+      ],
+      "range": "Thing",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "participantInRole__role",
+      "from_schema": "https://w3id.org/comet/core",
+      "slot_uri": "https://w3id.org/comet/role",
+      "alias": "role",
+      "owner": "ParticipantInRole",
+      "domain_of": [
+        "ParticipantInRole"
+      ],
+      "range": "Concept",
+      "@type": "SlotDefinition"
+    }
+  ],
+  "classes": [
+    {
+      "name": "Container",
+      "definition_uri": "https://w3id.org/comet/Container",
+      "from_schema": "https://w3id.org/comet/core",
+      "slots": [
+        "container__observables",
+        "container__observations",
+        "container__concepts",
+        "container__events",
+        "container__investigations",
+        "container__relationships"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "observables",
+          "range": "Observable",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "observations",
+          "range": "Observation",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "concepts",
+          "range": "Concept",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "events",
+          "range": "Event",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "investigations",
+          "range": "Investigation",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "relationships",
+          "range": "Relationship",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Container",
+      "tree_root": true,
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Thing",
+      "definition_uri": "https://w3id.org/comet/Thing",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "schema:Thing"
+      ],
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Thing",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Intangible",
+      "definition_uri": "https://w3id.org/comet/Intangible",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "schema:Intangible"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Intangible",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Observable",
+      "definition_uri": "https://w3id.org/comet/Observable",
+      "description": "A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain.",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "oboe-core:Entity"
+      ],
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "observable__properties"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "properties",
+          "range": "AttributeValue",
+          "multivalued": true,
+          "inlined_as_list": true,
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Observable",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Observation",
+      "definition_uri": "https://w3id.org/comet/Observation",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "schema:PropertyValue",
+        "oboe-core:Measurement"
+      ],
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_duration",
+        "observation__is_about",
+        "observation__result",
+        "observation__part_of"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "is_about",
+          "exact_mappings": [
+            "oboe-core:ofEntity"
+          ],
+          "range": "Observable",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "result",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "part_of",
+          "range": "Investigation",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Observation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AttributeValue",
+      "definition_uri": "https://w3id.org/comet/AttributeValue",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "schema:Quantity"
+      ],
+      "close_mappings": [
+        "schema:PropertyValue",
+        "fhir:Quantity"
+      ],
+      "is_a": "Intangible",
+      "slots": [
+        "attributeValue__attribute",
+        "attributeValue__target",
+        "attributeValue__numeric_value",
+        "attributeValue__value_range",
+        "attributeValue__ratio",
+        "attributeValue__unit"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "attribute",
+          "exact_mappings": [
+            "oboe-core:ofCharacteristic"
+          ],
+          "range": "AttributeConcept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "target",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "numeric_value",
+          "description": "The numeric value of the observation",
+          "range": "float",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "value_range",
+          "description": "The range of the value",
+          "range": "ValueRange",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "ratio",
+          "description": "The ratio of the value",
+          "range": "Ratio",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "unit",
+          "exact_mappings": [
+            "schema:unitCode",
+            "qudt:unit"
+          ],
+          "range": "UnitConcept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/AttributeValue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Event",
+      "definition_uri": "https://w3id.org/comet/Event",
+      "description": "A thing that happens to and potentially causally influences one of more participants.",
+      "comments": [
+        "this class should be used for events that affect observables under study, processes such as investigations and assays should not use this"
+      ],
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_duration",
+        "has_participants"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Event",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Location",
+      "definition_uri": "https://w3id.org/comet/Location",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Location",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Investigation",
+      "definition_uri": "https://w3id.org/comet/Investigation",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "has_duration"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Investigation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Agent",
+      "definition_uri": "https://w3id.org/comet/Agent",
+      "description": "Represents an Agent",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "prov:Agent",
+        "fibo.commons.PartiesAndSituations:Agent"
+      ],
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Agent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Relationship",
+      "definition_uri": "https://w3id.org/comet/Relationship",
+      "from_schema": "https://w3id.org/comet/core",
+      "close_mappings": [
+        "rdfs:Statement"
+      ],
+      "abstract": true,
+      "slots": [
+        "has_duration",
+        "relationship__subject",
+        "relationship__predicate",
+        "relationship__object"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "subject",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "predicate",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "object",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/Relationship",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Duration",
+      "definition_uri": "https://w3id.org/comet/Duration",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types",
+        "starts_at",
+        "ends_at",
+        "happens_at",
+        "has_duration",
+        "is_ongoing_as_of"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Duration",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "TimePoint",
+      "definition_uri": "https://w3id.org/comet/TimePoint",
+      "description": "A point in time. Can be fully specified, or specified in relative terms.",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "fibo.DatesAndTimes:TimeInstant"
+      ],
+      "is_a": "Intangible",
+      "slots": [
+        "year_value",
+        "date_value",
+        "time_value",
+        "datetime_value",
+        "marker_event",
+        "description"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/TimePoint",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Ratio",
+      "definition_uri": "https://w3id.org/comet/Ratio",
+      "description": "A tuple of two quantities",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "fhir:Ratio"
+      ],
+      "is_a": "Intangible",
+      "slots": [
+        "ratio__numerator",
+        "ratio__denominator"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "numerator",
+          "description": "The numerator of the ratio",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "denominator",
+          "description": "The denominator of the ratio",
+          "range": "AttributeValue",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "http://hl7.org/fhir/Ratio",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ValueRange",
+      "definition_uri": "https://w3id.org/comet/ValueRange",
+      "description": "A quantity range is a property that can be measured or counted",
+      "from_schema": "https://w3id.org/comet/core",
+      "mappings": [
+        "fhir:Range"
+      ],
+      "is_a": "Intangible",
+      "slots": [
+        "valueRange__lower_bound",
+        "valueRange__upper_bound"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "lower_bound",
+          "description": "The lower bound of the range",
+          "range": "float",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "upper_bound",
+          "description": "The upper bound of the range",
+          "range": "float",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "http://hl7.org/fhir/Range",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Concept",
+      "definition_uri": "https://w3id.org/comet/Concept",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/Concept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "UnitConcept",
+      "id_prefixes": [
+        "UO",
+        "UCUM",
+        "qudt"
+      ],
+      "definition_uri": "https://w3id.org/comet/UnitConcept",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "qudt:Unit",
+        "oboe-core:Unit"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/UnitConcept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "QuantityKind",
+      "definition_uri": "https://w3id.org/comet/QuantityKind",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "qudt:QuantityKind",
+        "fibo.QuantitiesAndUnits:ScalarQuantity"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/QuantityKind",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "AttributeConcept",
+      "id_prefixes": [
+        "PATO"
+      ],
+      "definition_uri": "https://w3id.org/comet/AttributeConcept",
+      "from_schema": "https://w3id.org/comet/core",
+      "exact_mappings": [
+        "oboe-core:Characteristic"
+      ],
+      "is_a": "Concept",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/AttributeConcept",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ParticipantInRole",
+      "definition_uri": "https://w3id.org/comet/ParticipantInRole",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Intangible",
+      "slots": [
+        "participantInRole__participant",
+        "participantInRole__role"
+      ],
+      "slot_usage": {},
+      "attributes": [
+        {
+          "name": "participant",
+          "range": "Thing",
+          "@type": "SlotDefinition"
+        },
+        {
+          "name": "role",
+          "range": "Concept",
+          "@type": "SlotDefinition"
+        }
+      ],
+      "class_uri": "https://w3id.org/comet/ParticipantInRole",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "DataObject",
+      "definition_uri": "https://w3id.org/comet/DataObject",
+      "from_schema": "https://w3id.org/comet/core",
+      "is_a": "Thing",
+      "slots": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "classification",
+        "ontology_types"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/comet/DataObject",
+      "@type": "ClassDefinition"
+    }
+  ],
+  "metamodel_version": "1.7.0",
+  "source_file": "core.yaml",
+  "source_file_date": "2024-09-07T14:35:42",
+  "source_file_size": 7738,
+  "generation_date": "2024-09-07T14:36:29",
+  "@type": "SchemaDefinition",
+  "@context": [
+    "project/jsonld/core.context.jsonld",
+    "https://w3id.org/linkml/types.context.jsonld",
+    {
+      "@base": "https://w3id.org/comet/"
+    }
+  ]
+}

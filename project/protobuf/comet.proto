@@ -1,0 +1,598 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// Represents an Agent
+message Agent
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message AgentRole
+ {
+  agent agent = 0
+  concept role = 0
+ }
+message AttributeConcept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message AttributeValue
+ {
+  attributeConcept attribute = 0
+  concept target = 0
+  float numericValue = 0
+  presenceEnum presenceValue = 0
+  valueRange valueRange = 0
+  valueSeries valueSeries = 0
+  ratio ratio = 0
+  concept qualitativeValue = 0
+  unitConcept unit = 0
+ repeated  relativeValue relativeValues = 0
+  concept valueAbsenceReason = 0
+ }
+// A group of patients with a common characteristic
+message Cohort
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message Concept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message CreationHistory
+ {
+ repeated  creationHistoryAction actions = 0
+ }
+message CreationHistoryAction
+ {
+  string description = 0
+ repeated  agentRole roles = 0
+ }
+message CreationMetadata
+ {
+  string title = 0
+  string abstract = 0
+  string rights = 0
+ repeated  agent creators = 0
+ repeated  agent contributors = 0
+ repeated  agent contacts = 0
+ repeated  string keywords = 0
+ }
+message DataObject
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message Dataset
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  observable observables = 0
+ repeated  observation observations = 0
+ repeated  concept concepts = 0
+ repeated  event events = 0
+ repeated  investigation investigations = 0
+ repeated  relationship relationships = 0
+ repeated  agent agents = 0
+ repeated  device devices = 0
+ repeated  sample samples = 0
+ repeated  resultMatrix resultMatrices = 0
+ }
+message Device
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message Duration
+ {
+  timePoint startTime = 0
+  timePoint endTime = 0
+  timePoint happensAt = 0
+  timePoint isOngoingAsOf = 0
+  recurringTemporalWindow recurring = 0
+ }
+message EnvironmentalMaterial
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+// A thing that happens to and potentially causally influences one of more participants.
+message Event
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  creationHistory metadata = 0
+  duration hasTime = 0
+ repeated  participantInRole hasParticipants = 0
+ repeated  attributeValue properties = 0
+ }
+message GeoBoxLocation
+ {
+  decimal westBoundingCoordinate = 0
+  decimal eastBoundingCoordinate = 0
+  decimal northBoundingCoordinate = 0
+  decimal southBoundingCoordinate = 0
+ }
+message GeoLocation
+ {
+  decimal latitude = 0
+  decimal longitude = 0
+ }
+// An interaction between a patient and one or more healthcare providers
+message HealthcareEncounter
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  creationHistory metadata = 0
+  duration hasTime = 0
+ repeated  participantInRole hasParticipants = 0
+ repeated  attributeValue properties = 0
+  patient patient = 0
+  healthcareOrganization provider = 0
+  healthcareEncounterClassification classification = 0
+ }
+// An organization that provides healthcare services
+message HealthcareOrganization
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message HealthcareSite
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message InformationEntity
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message Investigation
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  creationHistory metadata = 0
+  duration hasTime = 0
+  string objectives = 0
+ repeated  concept variables = 0
+  studyHypothesis hypothesis = 0
+  studyDesign design = 0
+ repeated  studyResult results = 0
+ }
+message InvestigationSite
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message InvestigativeProtocol
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+  uri protocolsIoUrl = 0
+  concept classification = 0
+ }
+message Location
+ {
+  geoLocation geoLocation = 0
+  geoBoxLocation geoBoxLocation = 0
+  concept namedLocation = 0
+  relativeLocation relativeLocation = 0
+  postalAddress postalAddress = 0
+ }
+message Microbiome
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+// A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain.
+message Observable
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message Observation
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  creationHistory metadata = 0
+  duration hasTime = 0
+  observable isAbout = 0
+  attributeValue result = 0
+  investigation partOf = 0
+  agent performer = 0
+  concept method = 0
+  device deviceUsed = 0
+  procedure procedureUsed = 0
+  procedureConfiguration procedureConfiguration = 0
+  sample sampleUsed = 0
+  dataObject dataUsed = 0
+ repeated  observation derivedFrom = 0
+ }
+message Organism
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message OrganismPart
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message OrganismPopulation
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message Organization
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message ParticipantInRole
+ {
+  thing participant = 0
+  concept role = 0
+ }
+message Patient
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+// Represents an Address
+message PostalAddress
+ {
+  string streetAddress = 0
+  string streetAddressAdditional = 0
+  string city = 0
+  string state = 0
+  string postalCode = 0
+  concept country = 0
+ }
+message Procedure
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+  concept classification = 0
+ }
+message ProcedureConfiguration
+ {
+ repeated  attributeValue parameters = 0
+ }
+message QuantityKind
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+// A tuple of two quantities
+message Ratio
+ {
+  attributeValue numerator = 0
+  attributeValue denominator = 0
+ }
+message RecurringTemporalWindow
+ {
+  duration enumeratedTimes = 0
+  integer count = 0
+  duration period = 0
+  unitConcept periodUnit = 0
+ }
+message RelativeLocation
+ {
+  concept relationshipType = 0
+  location targetLocation = 0
+ }
+// A value that is relative to another value
+message RelativeValue
+ {
+  concept interpretation = 0
+  concept reference = 0
+  attributeValue targetValue = 0
+ }
+message ResultMatrix
+ {
+  float values = 0
+ }
+message Sample
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ repeated  attributeValue properties = 0
+  caseOrControlEnum caseOrControl = 0
+ }
+message State
+ {
+ repeated  attributeValue parameters = 0
+ }
+message StudyDesign
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+  concept classification = 0
+ }
+message StudyHypothesis
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+message StudyResult
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+  studyHypothesis hypothesis = 0
+ repeated  attributeValue results = 0
+ }
+message Thing
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+// A point in time. Can be fully specified, or specified in relative terms.
+message TimePoint
+ {
+  integer yearValue = 0
+  date dateValue = 0
+  time timeValue = 0
+  datetime datetimeValue = 0
+  event markerEvent = 0
+  string description = 0
+ }
+message UnitConcept
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+ }
+// A quantity range is a property that can be measured or counted
+message ValueRange
+ {
+  float lowerBound = 0
+  float upperBound = 0
+ }
+// A series of values
+message ValueSeries
+ {
+  float values = 0
+ }
+message Variable
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  string type = 0
+  concept classification = 0
+ repeated  concept ontologyTypes = 0
+  location hasLocation = 0
+  duration hasTime = 0
+  creationHistory metadata = 0
+  unitConcept fixedUnit = 0
+ }

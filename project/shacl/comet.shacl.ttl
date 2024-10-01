@@ -1,0 +1,2799 @@
+@prefix comet: <https://w3id.org/comet/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+comet:CreationMetadata a sh:NodeShape ;
+    rdfs:subClassOf comet:ProvenanceComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A summary of the item" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:abstract ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information about rights held in and over the item" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path comet:rights ],
+        [ sh:class comet:Agent ;
+            sh:description "A person or organization that contributed to the creation of the work" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path dcterms:contributor ],
+        [ sh:class comet:Agent ;
+            sh:description "The person or organization who created the work" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path dcterms:creator ],
+        [ sh:class comet:Agent ;
+            sh:description "A contact point for a person or organization" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path schema1:contactPoint ],
+        [ sh:datatype xsd:string ;
+            sh:description "The title of the item" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Keywords or tags used to describe this item" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path schema1:keywords ] ;
+    sh:targetClass comet:CreationMetadata .
+
+comet:Dataset a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Relationship ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 5 ;
+            sh:path comet:relationships ],
+        [ sh:class comet:Investigation ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:investigations ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 18 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 15 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:ResultMatrix ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:result_matrices ],
+        [ sh:class comet:Device ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:devices ],
+        [ sh:class comet:Event ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path comet:events ],
+        [ sh:class comet:Concept ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path comet:concepts ],
+        [ sh:class comet:Observable ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:observables ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path comet:classification ],
+        [ sh:class comet:Sample ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path comet:samples ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Agent ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:agents ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 17 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 16 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Observation ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:observations ] ;
+    sh:targetClass comet:Dataset .
+
+comet:EnvironmentalMaterial a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ] ;
+    sh:targetClass comet:EnvironmentalMaterial .
+
+comet:InvestigativeProtocol a sh:NodeShape ;
+    rdfs:subClassOf comet:Procedure ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:protocols_io_url ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:metadata ] ;
+    sh:targetClass comet:InvestigativeProtocol .
+
+comet:Microbiome a sh:NodeShape ;
+    rdfs:subClassOf comet:OrganismPopulation ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ] ;
+    sh:targetClass comet:Microbiome .
+
+comet:Organism a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ] ;
+    sh:targetClass comet:Organism .
+
+comet:OrganismPart a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ] ;
+    sh:targetClass comet:OrganismPart .
+
+comet:QuantityKind a sh:NodeShape ;
+    rdfs:subClassOf comet:Concept ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ] ;
+    sh:targetClass comet:QuantityKind .
+
+comet:Variable a sh:NodeShape ;
+    rdfs:subClassOf comet:Concept ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:UnitConcept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:fixed_unit ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:classification ] ;
+    sh:targetClass comet:Variable .
+
+<https://w3id.org/linkml-common/Cohort> a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:description "A group of patients with a common characteristic" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ] ;
+    sh:targetClass <https://w3id.org/linkml-common/Cohort> .
+
+<https://w3id.org/linkml-common/HealthcareEncounter> a sh:NodeShape ;
+    rdfs:subClassOf comet:Event ;
+    sh:closed true ;
+    sh:description "An interaction between a patient and one or more healthcare providers" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 11 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path comet:properties ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path schema1:name ],
+        [ sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:in ( "Inpatient Visit" "Emergency Room Visit" "Emergency Room and Inpatient Visit" "Non-hospital institution Visit" "Outpatient Visit" "Home Visit" "Telehealth Visit" "Pharmacy Visit" "Laboratory Visit" "Ambulance Visit" "Case Management Visit" ) ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path schema1:description ],
+        [ sh:class <https://w3id.org/linkml-common/Patient> ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <https://w3id.org/linkml-common/patient> ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 12 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:ParticipantInRole ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path comet:has_participants ],
+        [ sh:class <https://w3id.org/linkml-common/HealthcareOrganization> ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path <https://w3id.org/linkml-common/provider> ] ;
+    sh:targetClass <https://w3id.org/linkml-common/HealthcareEncounter> .
+
+<https://w3id.org/linkml-common/HealthcareSite> a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigationSite ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ] ;
+    sh:targetClass <https://w3id.org/linkml-common/HealthcareSite> .
+
+<http://hl7.org/fhir/Range> a sh:NodeShape ;
+    rdfs:subClassOf comet:StructuredValueComponent ;
+    sh:closed true ;
+    sh:description "A quantity range is a property that can be measured or counted" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:description "The upper bound of the range" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:upper_bound ],
+        [ sh:datatype xsd:float ;
+            sh:description "The lower bound of the range" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:lower_bound ] ;
+    sh:targetClass <http://hl7.org/fhir/Range> .
+
+<http://hl7.org/fhir/Ratio> a sh:NodeShape ;
+    rdfs:subClassOf comet:StructuredValueComponent ;
+    sh:closed true ;
+    sh:description "A tuple of two quantities" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:AttributeValue ;
+            sh:description "The numerator of the ratio" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:numerator ],
+        [ sh:class comet:AttributeValue ;
+            sh:description "The denominator of the ratio" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:denominator ] ;
+    sh:targetClass <http://hl7.org/fhir/Ratio> .
+
+comet:AgentRole a sh:NodeShape ;
+    rdfs:subClassOf comet:ProvenanceComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:role ],
+        [ sh:class comet:Agent ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:agent ] ;
+    sh:targetClass comet:AgentRole .
+
+comet:AttributeConcept a sh:NodeShape ;
+    rdfs:subClassOf comet:Concept ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ] ;
+    sh:targetClass comet:AttributeConcept .
+
+comet:CreationHistoryAction a sh:NodeShape ;
+    rdfs:subClassOf comet:ProvenanceComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:description ],
+        [ sh:class comet:AgentRole ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:roles ] ;
+    sh:targetClass comet:CreationHistoryAction .
+
+comet:DataObject a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ] ;
+    sh:targetClass comet:DataObject .
+
+comet:GeoBoxLocation a sh:NodeShape ;
+    rdfs:subClassOf comet:LocationComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:description "The southernmost coordinate of the location" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:south_bounding_coordinate ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "The easternmost coordinate of the location" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:east_bounding_coordinate ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "The northernmost coordinate of the location" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path comet:north_bounding_coordinate ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "The westernmost coordinate of the location" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:west_bounding_coordinate ] ;
+    sh:targetClass comet:GeoBoxLocation .
+
+comet:GeoLocation a sh:NodeShape ;
+    rdfs:subClassOf comet:LocationComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#long> ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ] ;
+    sh:targetClass comet:GeoLocation .
+
+comet:InvestigationSite a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ] ;
+    sh:targetClass comet:InvestigationSite .
+
+comet:OrganismPopulation a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ] ;
+    sh:targetClass comet:OrganismPopulation .
+
+comet:Organization a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ] ;
+    sh:targetClass comet:Organization .
+
+comet:PostalAddress a sh:NodeShape ;
+    rdfs:subClassOf comet:LocationComponent ;
+    sh:closed true ;
+    sh:description "Represents an Address" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "The city" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path comet:city ],
+        [ sh:class comet:Concept ;
+            sh:description "The country" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:country ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:street_address_additional ],
+        [ sh:datatype xsd:string ;
+            sh:description "The state" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:state ],
+        [ sh:datatype xsd:string ;
+            sh:description "The street address" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:street_address ],
+        [ sh:datatype xsd:string ;
+            sh:description "The postal code or zip code" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path comet:postal_code ] ;
+    sh:targetClass comet:PostalAddress .
+
+comet:ProcedureConfiguration a sh:NodeShape ;
+    rdfs:subClassOf comet:State ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:parameters ] ;
+    sh:targetClass comet:ProcedureConfiguration .
+
+comet:RecurringTemporalWindow a sh:NodeShape ;
+    rdfs:subClassOf comet:Temporal ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:count ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:period ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:enumerated_times ],
+        [ sh:class comet:UnitConcept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path comet:period_unit ] ;
+    sh:targetClass comet:RecurringTemporalWindow .
+
+comet:Relationship a sh:NodeShape ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class schema1:Thing ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path comet:object ],
+        [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path comet:predicate ],
+        [ sh:class schema1:Thing ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:subject ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:has_time ] ;
+    sh:targetClass comet:Relationship .
+
+comet:RelativeLocation a sh:NodeShape ;
+    rdfs:subClassOf comet:LocationComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:target_location ],
+        [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:relationship_type ] ;
+    sh:targetClass comet:RelativeLocation .
+
+comet:RelativeValue a sh:NodeShape ;
+    rdfs:subClassOf comet:StructuredValueComponent ;
+    sh:closed true ;
+    sh:description "A value that is relative to another value" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "The type of relationship, e.g. high" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:interpretation ],
+        [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:reference ],
+        [ sh:class comet:AttributeValue ;
+            sh:description "The target value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:target_value ] ;
+    sh:targetClass comet:RelativeValue .
+
+comet:ResultMatrix a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:values ] ;
+    sh:targetClass comet:ResultMatrix .
+
+comet:State a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:parameters ] ;
+    sh:targetClass comet:State .
+
+comet:StudyDesign a sh:NodeShape ;
+    rdfs:subClassOf comet:Procedure ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass comet:StudyDesign .
+
+comet:StudyResult a sh:NodeShape ;
+    rdfs:subClassOf comet:InformationEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:StudyHypothesis ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:hypothesis ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:results ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ] ;
+    sh:targetClass comet:StudyResult .
+
+comet:ValueSeries a sh:NodeShape ;
+    rdfs:subClassOf comet:StructuredValueComponent ;
+    sh:closed true ;
+    sh:description "A series of values" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:values ] ;
+    sh:targetClass comet:ValueSeries .
+
+<https://w3id.org/linkml-common/HealthcareOrganization> a sh:NodeShape ;
+    rdfs:subClassOf comet:Organization ;
+    sh:closed true ;
+    sh:description "An organization that provides healthcare services" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ] ;
+    sh:targetClass <https://w3id.org/linkml-common/HealthcareOrganization> .
+
+<https://w3id.org/linkml-common/Patient> a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ] ;
+    sh:targetClass <https://w3id.org/linkml-common/Patient> .
+
+comet:Device a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ] ;
+    sh:targetClass comet:Device .
+
+comet:DomainEntity a sh:NodeShape ;
+    rdfs:subClassOf schema1:Thing ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass comet:DomainEntity .
+
+comet:InformationEntity a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ] ;
+    sh:targetClass comet:InformationEntity .
+
+comet:Investigation a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:StudyHypothesis ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path comet:hypothesis ],
+        [ sh:class comet:StudyResult ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:results ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 13 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path schema1:name ],
+        [ sh:class comet:StudyDesign ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:design ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 12 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path comet:variables ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:objectives ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path schema1:identifier ] ;
+    sh:targetClass comet:Investigation .
+
+comet:Observation a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 17 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 16 ;
+            sh:path comet:classification ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 18 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 19 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Procedure ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:procedure_used ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path comet:type ],
+        [ sh:class comet:Investigation ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path comet:part_of ],
+        [ sh:class comet:Device ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:device_used ],
+        [ sh:class comet:DataObject ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path comet:data_used ],
+        [ sh:class comet:ProcedureConfiguration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:procedure_configuration ],
+        [ sh:class comet:Observation ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path comet:derived_from ],
+        [ sh:class comet:Observable ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:is_about ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path schema1:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path schema1:description ],
+        [ sh:class comet:AttributeValue ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:result ],
+        [ sh:class comet:Agent ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:performer ],
+        [ sh:class comet:Sample ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path comet:sample_used ],
+        [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:method ] ;
+    sh:targetClass comet:Observation .
+
+comet:ParticipantInRole a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:role ],
+        [ sh:class schema1:Thing ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:participant ] ;
+    sh:targetClass comet:ParticipantInRole .
+
+comet:Sample a sh:NodeShape ;
+    rdfs:subClassOf comet:Observable ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ] ;
+    sh:targetClass comet:Sample .
+
+comet:StudyHypothesis a sh:NodeShape ;
+    rdfs:subClassOf comet:InformationEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ] ;
+    sh:targetClass comet:StudyHypothesis .
+
+comet:Event a sh:NodeShape ;
+    rdfs:subClassOf comet:DomainEntity ;
+    sh:closed true ;
+    sh:description "A thing that happens to and potentially causally influences one of more participants." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:name ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:properties ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path comet:type ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:classification ],
+        [ sh:class comet:ParticipantInRole ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:has_participants ] ;
+    sh:targetClass comet:Event .
+
+comet:Procedure a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ] ;
+    sh:targetClass comet:Procedure .
+
+comet:Temporal a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass comet:Temporal .
+
+comet:UnitConcept a sh:NodeShape ;
+    rdfs:subClassOf comet:Concept ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ] ;
+    sh:targetClass comet:UnitConcept .
+
+comet:ProvenanceComponent a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass comet:ProvenanceComponent .
+
+comet:TimePoint a sh:NodeShape ;
+    rdfs:subClassOf comet:Temporal ;
+    sh:closed true ;
+    sh:description "A point in time. Can be fully specified, or specified in relative terms." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:time ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path comet:time_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Event ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:marker_event ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path comet:year_value ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:datetime_value ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path comet:date_value ] ;
+    sh:targetClass comet:TimePoint .
+
+comet:LocationComponent a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass comet:LocationComponent .
+
+comet:StructuredValueComponent a sh:NodeShape ;
+    rdfs:subClassOf comet:Intangible ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass comet:StructuredValueComponent .
+
+schema1:Thing a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ] ;
+    sh:targetClass schema1:Thing .
+
+comet:Agent a sh:NodeShape ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    sh:closed true ;
+    sh:description "Represents an Agent" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ] ;
+    sh:targetClass comet:Agent .
+
+comet:Intangible a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass comet:Intangible .
+
+comet:Observable a sh:NodeShape ;
+    rdfs:subClassOf comet:DomainEntity ;
+    sh:closed true ;
+    sh:description "A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:name ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path comet:classification ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 10 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:has_time ],
+        [ sh:in ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path comet:case_or_control ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:has_location ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path comet:type ],
+        [ sh:class comet:AttributeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:properties ] ;
+    sh:targetClass comet:Observable .
+
+comet:InvestigativeEntity a sh:NodeShape ;
+    rdfs:subClassOf schema1:Thing ;
+    sh:closed false ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ],
+        [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
+    sh:targetClass comet:InvestigativeEntity .
+
+comet:AttributeValue a sh:NodeShape ;
+    rdfs:subClassOf comet:StructuredValueComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <http://hl7.org/fhir/Ratio> ;
+            sh:description "The ratio of the value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:ratio ],
+        [ sh:class comet:UnitConcept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path comet:unit ],
+        [ sh:datatype xsd:float ;
+            sh:description "The numeric value of the observation" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path comet:numeric_value ],
+        [ sh:class comet:ValueSeries ;
+            sh:description "A series of values" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 5 ;
+            sh:path comet:value_series ],
+        [ sh:class comet:RelativeValue ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path comet:relative_values ],
+        [ sh:class comet:Concept ;
+            sh:description "A qualitative value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path comet:qualitative_value ],
+        [ sh:class comet:Concept ;
+            sh:description "The reason for the absence of a value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path comet:value_absence_reason ],
+        [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path comet:target ],
+        [ sh:class <http://hl7.org/fhir/Range> ;
+            sh:description "The range of the value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path comet:value_range ],
+        [ sh:in ( "PRESENT" "ABSENT" "BELOW_DETECTION_LIMIT" "ABOVE_DETECTION_LIMIT" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path comet:presence_value ],
+        [ sh:class comet:AttributeConcept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path comet:attribute ] ;
+    sh:targetClass comet:AttributeValue .
+
+comet:CreationHistory a sh:NodeShape ;
+    rdfs:subClassOf comet:ProvenanceComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:CreationHistoryAction ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:actions ] ;
+    sh:targetClass comet:CreationHistory .
+
+comet:Location a sh:NodeShape ;
+    rdfs:subClassOf comet:LocationComponent ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:Concept ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path comet:named_location ],
+        [ sh:class comet:PostalAddress ;
+            sh:description "A postal address" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path comet:postal_address ],
+        [ sh:class comet:RelativeLocation ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path comet:relative_location ],
+        [ sh:class comet:GeoLocation ;
+            sh:description "A string representation of a geolocation" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:geo_location ],
+        [ sh:class comet:GeoBoxLocation ;
+            sh:description "A string representation of a geobox location" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:geo_box_location ] ;
+    sh:targetClass comet:Location .
+
+comet:Duration a sh:NodeShape ;
+    rdfs:subClassOf comet:Temporal ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:RecurringTemporalWindow ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 4 ;
+            sh:path comet:recurring ],
+        [ sh:class comet:TimePoint ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path comet:start_time ],
+        [ sh:class comet:TimePoint ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path comet:is_ongoing_as_of ],
+        [ sh:class comet:TimePoint ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 1 ;
+            sh:path comet:end_time ],
+        [ sh:class comet:TimePoint ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 2 ;
+            sh:path comet:happens_at ] ;
+    sh:targetClass comet:Duration .
+
+comet:Concept a sh:NodeShape ;
+    rdfs:subClassOf schema1:Thing ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class comet:CreationHistory ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 8 ;
+            sh:path comet:metadata ],
+        [ sh:class comet:Concept ;
+            sh:description "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path comet:ontology_types ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path schema1:description ],
+        [ sh:class comet:Location ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 6 ;
+            sh:path comet:has_location ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path schema1:identifier ],
+        [ sh:class comet:Duration ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path comet:has_time ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path comet:type ],
+        [ sh:class comet:Concept ;
+            sh:description "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path comet:classification ] ;
+    sh:targetClass comet:Concept .
+

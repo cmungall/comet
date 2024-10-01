@@ -1,0 +1,37 @@
+id: https://w3id.org/comet/bio
+name: comet-bio
+title: comet-bio
+license: MIT
+see_also:
+  - https://linkml.github.io/linkml-common
+
+prefixes:
+  comet: https://w3id.org/comet/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+default_prefix: comet
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+
+
+classes:
+
+  EnvironmentalMaterial:
+    is_a: Observable
+
+  Organism:
+    is_a: Observable
+
+  OrganismPart:
+    is_a: Observable
+
+  OrganismPopulation:
+    is_a: Observable
+
+  Microbiome:
+    is_a: OrganismPopulation

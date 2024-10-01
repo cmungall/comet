@@ -1,0 +1,692 @@
+# metamodel_version: 1.7.0
+type Agent
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type AgentRole
+  {
+    agent: Agent
+    role: Concept
+  }
+
+type AttributeConcept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type AttributeValue
+  {
+    attribute: AttributeConcept
+    target: Concept
+    numericValue: Float
+    presenceValue: PresenceEnum
+    valueRange: ValueRange
+    valueSeries: ValueSeries
+    ratio: Ratio
+    qualitativeValue: Concept
+    unit: UnitConcept
+    relativeValues: [RelativeValue]
+    valueAbsenceReason: Concept
+  }
+
+type Cohort
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type Concept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type CreationHistory
+  {
+    actions: [CreationHistoryAction]
+  }
+
+type CreationHistoryAction
+  {
+    description: String
+    roles: [AgentRole]
+  }
+
+type CreationMetadata
+  {
+    title: String
+    abstract: String
+    rights: String
+    creators: [Agent]
+    contributors: [Agent]
+    contacts: [Agent]
+    keywords: [String]
+  }
+
+type DataObject
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type Dataset
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    observables: [Observable]
+    observations: [Observation]
+    concepts: [Concept]
+    events: [Event]
+    investigations: [Investigation]
+    relationships: [Relationship]
+    agents: [Agent]
+    devices: [Device]
+    samples: [Sample]
+    resultMatrices: [ResultMatrix]
+  }
+
+type Device
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+interface DomainEntity
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type Duration
+  {
+    startTime: TimePoint
+    endTime: TimePoint
+    happensAt: TimePoint
+    isOngoingAsOf: TimePoint
+    recurring: RecurringTemporalWindow
+  }
+
+type EnvironmentalMaterial
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type Event
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    metadata: CreationHistory
+    hasTime: Duration
+    hasParticipants: [ParticipantInRole]
+    properties: [AttributeValue]
+  }
+
+type GeoBoxLocation
+  {
+    westBoundingCoordinate: Decimal
+    eastBoundingCoordinate: Decimal
+    northBoundingCoordinate: Decimal
+    southBoundingCoordinate: Decimal
+  }
+
+type GeoLocation
+  {
+    latitude: Decimal
+    longitude: Decimal
+  }
+
+type HealthcareEncounter
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    metadata: CreationHistory
+    hasTime: Duration
+    hasParticipants: [ParticipantInRole]
+    properties: [AttributeValue]
+    patient: Patient
+    provider: HealthcareOrganization
+    classification: HealthcareEncounterClassification
+  }
+
+type HealthcareOrganization
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type HealthcareSite
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type InformationEntity
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type Intangible
+  {
+  }
+
+type Investigation
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    metadata: CreationHistory
+    hasTime: Duration
+    objectives: String
+    variables: [Concept]
+    hypothesis: StudyHypothesis
+    design: StudyDesign
+    results: [StudyResult]
+  }
+
+type InvestigationSite
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+interface InvestigativeEntity
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type InvestigativeProtocol
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    protocolsIoUrl: Uri
+    classification: Concept
+  }
+
+type Location
+  {
+    geoLocation: GeoLocation
+    geoBoxLocation: GeoBoxLocation
+    namedLocation: Concept
+    relativeLocation: RelativeLocation
+    postalAddress: PostalAddress
+  }
+
+interface LocationComponent
+  {
+  }
+
+type Microbiome
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type Observable
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type Observation
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    metadata: CreationHistory
+    hasTime: Duration
+    isAbout: Observable
+    result: AttributeValue
+    partOf: Investigation
+    performer: Agent
+    method: Concept
+    deviceUsed: Device
+    procedureUsed: Procedure
+    procedureConfiguration: ProcedureConfiguration
+    sampleUsed: Sample
+    dataUsed: DataObject
+    derivedFrom: [Observation]
+  }
+
+type Organism
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type OrganismPart
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type OrganismPopulation
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type Organization
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type ParticipantInRole
+  {
+    participant: Thing
+    role: Concept
+  }
+
+type Patient
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type PostalAddress
+  {
+    streetAddress: String
+    streetAddressAdditional: String
+    city: String
+    state: String
+    postalCode: String
+    country: Concept
+  }
+
+type Procedure
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    classification: Concept
+  }
+
+type ProcedureConfiguration
+  {
+    parameters: [AttributeValue]
+  }
+
+interface ProvenanceComponent
+  {
+  }
+
+type QuantityKind
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type Ratio
+  {
+    numerator: AttributeValue
+    denominator: AttributeValue
+  }
+
+type RecurringTemporalWindow
+  {
+    enumeratedTimes: Duration
+    count: Integer
+    period: Duration
+    periodUnit: UnitConcept
+  }
+
+interface Relationship
+  {
+    hasTime: Duration
+    subject: Thing
+    predicate: Concept
+    object: Thing
+  }
+
+type RelativeLocation
+  {
+    relationshipType: Concept
+    targetLocation: Location
+  }
+
+type RelativeValue
+  {
+    interpretation: Concept!
+    reference: Concept
+    targetValue: AttributeValue
+  }
+
+type ResultMatrix
+  {
+    values: Float
+  }
+
+type Sample
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    properties: [AttributeValue]
+    caseOrControl: CaseOrControlEnum
+  }
+
+type State
+  {
+    parameters: [AttributeValue]
+  }
+
+interface StructuredValueComponent
+  {
+  }
+
+type StudyDesign
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    classification: Concept
+  }
+
+type StudyHypothesis
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type StudyResult
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    hypothesis: StudyHypothesis
+    results: [AttributeValue]
+  }
+
+interface Temporal
+  {
+  }
+
+type Thing
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type TimePoint
+  {
+    yearValue: Integer
+    dateValue: Date
+    timeValue: Time
+    datetimeValue: Datetime
+    markerEvent: Event
+    description: String
+  }
+
+type UnitConcept
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+  }
+
+type ValueRange
+  {
+    lowerBound: Float
+    upperBound: Float
+  }
+
+type ValueSeries
+  {
+    values: Float
+  }
+
+type Variable
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    type: String
+    classification: Concept
+    ontologyTypes: [Concept]
+    hasLocation: Location
+    hasTime: Duration
+    metadata: CreationHistory
+    fixedUnit: UnitConcept
+  }
+

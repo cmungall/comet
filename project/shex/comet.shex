@@ -1,0 +1,724 @@
+# metamodel_version: 1.7.0
+BASE <https://w3id.org/comet/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema1: <http://schema.org/>
+PREFIX fhir: <http://hl7.org/fhir/>
+PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX linkml_common: <https://w3id.org/linkml-common/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<CountScalar> xsd:integer
+
+<Agent> CLOSED {
+    (  $<Agent_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ?
+       ) ;
+       rdf:type [ <Agent> ]
+    )
+}
+
+<AgentRole> CLOSED {
+    (  $<AgentRole_tes> (  &<ProvenanceComponent_tes> ;
+          rdf:type [ <ProvenanceComponent> ] ? ;
+          <agent> @<Agent> ? ;
+          <role> @<Concept> ?
+       ) ;
+       rdf:type [ <AgentRole> ] ?
+    )
+}
+
+<AttributeConcept> CLOSED {
+    (  $<AttributeConcept_tes> (  &<Concept_tes> ;
+          rdf:type [ <Concept> ] ?
+       ) ;
+       rdf:type [ <AttributeConcept> ]
+    )
+}
+
+<AttributeValue> CLOSED {
+    (  $<AttributeValue_tes> (  &<StructuredValueComponent_tes> ;
+          rdf:type [ <StructuredValueComponent> ] ? ;
+          <attribute> @<AttributeConcept> ? ;
+          <target> @<Concept> ? ;
+          <numeric_value> @linkml:Float ? ;
+          <presence_value> [ <https://w3id.org/comet/PresenceEnum#PRESENT> <https://w3id.org/comet/PresenceEnum#ABSENT>
+             <https://w3id.org/comet/PresenceEnum#BELOW_DETECTION_LIMIT>
+             <https://w3id.org/comet/PresenceEnum#ABOVE_DETECTION_LIMIT> ] ? ;
+          <value_range> @<ValueRange> ? ;
+          <value_series> @<ValueSeries> ? ;
+          <ratio> @<Ratio> ? ;
+          <qualitative_value> @<Concept> ? ;
+          <unit> @<UnitConcept> ? ;
+          <relative_values> @<RelativeValue> * ;
+          <value_absence_reason> @<Concept> ?
+       ) ;
+       rdf:type [ <AttributeValue> ] ?
+    )
+}
+
+linkml_common:Cohort CLOSED {
+    (  $linkml_common:Cohort_tes (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ linkml_common:Cohort ]
+    )
+}
+
+<Concept>  (
+    CLOSED {
+       (  $<Concept_tes> (  &<Thing_tes> ;
+             rdf:type [ schema1:Thing ] ?
+          ) ;
+          rdf:type [ <Concept> ]
+       )
+    } OR @<AttributeConcept> OR @<QuantityKind> OR @<UnitConcept> OR @<Variable>
+)
+
+<CreationHistory> CLOSED {
+    (  $<CreationHistory_tes> (  &<ProvenanceComponent_tes> ;
+          rdf:type [ <ProvenanceComponent> ] ? ;
+          <actions> @<CreationHistoryAction> *
+       ) ;
+       rdf:type [ <CreationHistory> ] ?
+    )
+}
+
+<CreationHistoryAction> CLOSED {
+    (  $<CreationHistoryAction_tes> (  &<ProvenanceComponent_tes> ;
+          rdf:type [ <ProvenanceComponent> ] ? ;
+          <description> @linkml:String ? ;
+          <roles> @<AgentRole> *
+       ) ;
+       rdf:type [ <CreationHistoryAction> ] ?
+    )
+}
+
+<CreationMetadata> CLOSED {
+    (  $<CreationMetadata_tes> (  &<ProvenanceComponent_tes> ;
+          rdf:type [ <ProvenanceComponent> ] ? ;
+          <title> @linkml:String ? ;
+          <abstract> @linkml:String ? ;
+          <rights> @linkml:String ? ;
+          dcterms:creator @<Agent> * ;
+          dcterms:contributor @<Agent> * ;
+          schema1:contactPoint @<Agent> * ;
+          schema1:keywords @linkml:String *
+       ) ;
+       rdf:type [ <CreationMetadata> ] ?
+    )
+}
+
+<DataObject> CLOSED {
+    (  $<DataObject_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ?
+       ) ;
+       rdf:type [ <DataObject> ]
+    )
+}
+
+<Dataset> CLOSED {
+    (  $<Dataset_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ? ;
+          <observables> @<Observable> * ;
+          <observations> @<Observation> * ;
+          <concepts> @<Concept> * ;
+          <events> @<Event> * ;
+          <investigations> @<Investigation> * ;
+          <relationships> @<Relationship> * ;
+          <agents> @<Agent> * ;
+          <devices> @<Device> * ;
+          <samples> @<Sample> * ;
+          <result_matrices> @<ResultMatrix> *
+       ) ;
+       rdf:type [ <Dataset> ]
+    )
+}
+
+<Device> CLOSED {
+    (  $<Device_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ?
+       ) ;
+       rdf:type [ <Device> ]
+    )
+}
+
+<DomainEntity>  (
+    @<Event> OR @<Observable>
+)
+
+<DomainEntity_struct> {
+    (  $<DomainEntity_tes> (  &<Thing_tes> ;
+          rdf:type [ schema1:Thing ] ?
+       ) ;
+       rdf:type [ <DomainEntity> ]
+    )
+}
+
+<Duration> CLOSED {
+    (  $<Duration_tes> (  &<Temporal_tes> ;
+          rdf:type [ <Temporal> ] ? ;
+          <start_time> @<TimePoint> ? ;
+          <end_time> @<TimePoint> ? ;
+          <happens_at> @<TimePoint> ? ;
+          <is_ongoing_as_of> @<TimePoint> ? ;
+          <recurring> @<RecurringTemporalWindow> ?
+       ) ;
+       rdf:type [ <Duration> ] ?
+    )
+}
+
+<EnvironmentalMaterial> CLOSED {
+    (  $<EnvironmentalMaterial_tes> (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ <EnvironmentalMaterial> ]
+    )
+}
+
+<Event>  (
+    CLOSED {
+       (  $<Event_tes> (  &<DomainEntity_tes> ;
+             rdf:type [ <DomainEntity> ] ? ;
+             <has_participants> @<ParticipantInRole> * ;
+             <properties> @<AttributeValue> *
+          ) ;
+          rdf:type [ <Event> ]
+       )
+    } OR @linkml_common:HealthcareEncounter
+)
+
+<GeoBoxLocation> CLOSED {
+    (  $<GeoBoxLocation_tes> (  &<LocationComponent_tes> ;
+          rdf:type [ <LocationComponent> ] ? ;
+          <west_bounding_coordinate> @linkml:Decimal ? ;
+          <east_bounding_coordinate> @linkml:Decimal ? ;
+          <north_bounding_coordinate> @linkml:Decimal ? ;
+          <south_bounding_coordinate> @linkml:Decimal ?
+       ) ;
+       rdf:type [ <GeoBoxLocation> ] ?
+    )
+}
+
+<GeoLocation> CLOSED {
+    (  $<GeoLocation_tes> (  &<LocationComponent_tes> ;
+          rdf:type [ <LocationComponent> ] ? ;
+          wgs84:lat @linkml:Decimal ? ;
+          wgs84:long @linkml:Decimal ?
+       ) ;
+       rdf:type [ <GeoLocation> ] ?
+    )
+}
+
+linkml_common:HealthcareEncounter CLOSED {
+    (  $linkml_common:HealthcareEncounter_tes (  &<Event_tes> ;
+          rdf:type [ <Event> ] ? ;
+          linkml_common:patient @linkml_common:Patient ? ;
+          linkml_common:provider @linkml_common:HealthcareOrganization ? ;
+          <classification> [ <https://w3id.org/linkml-common/HealthcareEncounterClassification#Inpatient%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Emergency%20Room%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Emergency%20Room%20and%20Inpatient%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Non-hospital%20institution%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Outpatient%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Home%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Telehealth%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Pharmacy%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Laboratory%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Ambulance%20Visit>
+             <https://w3id.org/linkml-common/HealthcareEncounterClassification#Case%20Management%20Visit> ] ?
+       ) ;
+       rdf:type [ linkml_common:HealthcareEncounter ]
+    )
+}
+
+linkml_common:HealthcareOrganization CLOSED {
+    (  $linkml_common:HealthcareOrganization_tes (  &<Organization_tes> ;
+          rdf:type [ <Organization> ] ?
+       ) ;
+       rdf:type [ linkml_common:HealthcareOrganization ]
+    )
+}
+
+linkml_common:HealthcareSite CLOSED {
+    (  $linkml_common:HealthcareSite_tes (  &<InvestigationSite_tes> ;
+          rdf:type [ <InvestigationSite> ] ?
+       ) ;
+       rdf:type [ linkml_common:HealthcareSite ]
+    )
+}
+
+<InformationEntity>  (
+    CLOSED {
+       (  $<InformationEntity_tes> (  &<InvestigativeEntity_tes> ;
+             rdf:type [ <InvestigativeEntity> ] ?
+          ) ;
+          rdf:type [ <InformationEntity> ]
+       )
+    } OR @<StudyHypothesis> OR @<StudyResult>
+)
+
+<Intangible>  (
+    CLOSED {
+       (  $<Intangible_tes> rdf:type . * ;
+          rdf:type [ <Intangible> ] ?
+       )
+    } OR @<LocationComponent> OR @<ParticipantInRole> OR @<ProvenanceComponent> OR @<ResultMatrix> OR @<State> OR
+    @<StructuredValueComponent> OR @<Temporal>
+)
+
+<Investigation> CLOSED {
+    (  $<Investigation_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ? ;
+          <objectives> @linkml:String ? ;
+          <variables> @<Concept> * ;
+          <hypothesis> @<StudyHypothesis> ? ;
+          <design> @<StudyDesign> ? ;
+          <results> @<StudyResult> *
+       ) ;
+       rdf:type [ <Investigation> ]
+    )
+}
+
+<InvestigationSite>  (
+    CLOSED {
+       (  $<InvestigationSite_tes> (  &<InvestigativeEntity_tes> ;
+             rdf:type [ <InvestigativeEntity> ] ?
+          ) ;
+          rdf:type [ <InvestigationSite> ]
+       )
+    } OR @linkml_common:HealthcareSite
+)
+
+<InvestigativeEntity>  (
+    @<Agent> OR @<DataObject> OR @<Dataset> OR @<Device> OR @<InformationEntity> OR @<Investigation> OR @<InvestigationSite> OR
+    @<Observation> OR @<Organization> OR @<Procedure>
+)
+
+<InvestigativeEntity_struct> {
+    (  $<InvestigativeEntity_tes> (  &<Thing_tes> ;
+          rdf:type [ schema1:Thing ] ?
+       ) ;
+       rdf:type [ <InvestigativeEntity> ]
+    )
+}
+
+<InvestigativeProtocol> CLOSED {
+    (  $<InvestigativeProtocol_tes> (  &<Procedure_tes> ;
+          rdf:type [ <Procedure> ] ? ;
+          <protocols_io_url> @linkml:Uri ? ;
+          <classification> @<Concept> ?
+       ) ;
+       rdf:type [ <InvestigativeProtocol> ]
+    )
+}
+
+<Location> CLOSED {
+    (  $<Location_tes> (  &<LocationComponent_tes> ;
+          rdf:type [ <LocationComponent> ] ? ;
+          <geo_location> @<GeoLocation> ? ;
+          <geo_box_location> @<GeoBoxLocation> ? ;
+          <named_location> @<Concept> ? ;
+          <relative_location> @<RelativeLocation> ? ;
+          <postal_address> @<PostalAddress> ?
+       ) ;
+       rdf:type [ <Location> ] ?
+    )
+}
+
+<LocationComponent>  (
+    @<GeoBoxLocation> OR @<GeoLocation> OR @<Location> OR @<PostalAddress> OR @<RelativeLocation>
+)
+
+<LocationComponent_struct> {
+    (  $<LocationComponent_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ?
+       ) ;
+       rdf:type [ <LocationComponent> ] ?
+    )
+}
+
+<Microbiome> CLOSED {
+    (  $<Microbiome_tes> (  &<OrganismPopulation_tes> ;
+          rdf:type [ <OrganismPopulation> ] ?
+       ) ;
+       rdf:type [ <Microbiome> ]
+    )
+}
+
+<Observable>  (
+    CLOSED {
+       (  $<Observable_tes> (  &<DomainEntity_tes> ;
+             rdf:type [ <DomainEntity> ] ? ;
+             <properties> @<AttributeValue> * ;
+             <case_or_control> [ <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ] ?
+          ) ;
+          rdf:type [ <Observable> ]
+       )
+    } OR @linkml_common:Cohort OR @<EnvironmentalMaterial> OR @<Organism> OR @<OrganismPart> OR @<OrganismPopulation> OR
+    @linkml_common:Patient OR @<Sample>
+)
+
+<Observation> CLOSED {
+    (  $<Observation_tes> (  &<InvestigativeEntity_tes> ;
+          rdf:type [ <InvestigativeEntity> ] ? ;
+          <is_about> @<Observable> ? ;
+          <result> @<AttributeValue> ? ;
+          <part_of> @<Investigation> ? ;
+          <performer> @<Agent> ? ;
+          <method> @<Concept> ? ;
+          <device_used> @<Device> ? ;
+          <procedure_used> @<Procedure> ? ;
+          <procedure_configuration> @<ProcedureConfiguration> ? ;
+          <sample_used> @<Sample> ? ;
+          <data_used> @<DataObject> ? ;
+          <derived_from> @<Observation> *
+       ) ;
+       rdf:type [ <Observation> ]
+    )
+}
+
+<Organism> CLOSED {
+    (  $<Organism_tes> (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ <Organism> ]
+    )
+}
+
+<OrganismPart> CLOSED {
+    (  $<OrganismPart_tes> (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ <OrganismPart> ]
+    )
+}
+
+<OrganismPopulation>  (
+    CLOSED {
+       (  $<OrganismPopulation_tes> (  &<Observable_tes> ;
+             rdf:type [ <Observable> ] ?
+          ) ;
+          rdf:type [ <OrganismPopulation> ]
+       )
+    } OR @<Microbiome>
+)
+
+<Organization>  (
+    CLOSED {
+       (  $<Organization_tes> (  &<InvestigativeEntity_tes> ;
+             rdf:type [ <InvestigativeEntity> ] ?
+          ) ;
+          rdf:type [ <Organization> ]
+       )
+    } OR @linkml_common:HealthcareOrganization
+)
+
+<ParticipantInRole> CLOSED {
+    (  $<ParticipantInRole_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ? ;
+          <participant> @<Thing> ? ;
+          <role> @<Concept> ?
+       ) ;
+       rdf:type [ <ParticipantInRole> ] ?
+    )
+}
+
+linkml_common:Patient CLOSED {
+    (  $linkml_common:Patient_tes (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ linkml_common:Patient ]
+    )
+}
+
+<PostalAddress> CLOSED {
+    (  $<PostalAddress_tes> (  &<LocationComponent_tes> ;
+          rdf:type [ <LocationComponent> ] ? ;
+          <street_address> @linkml:String ? ;
+          <street_address_additional> @linkml:String ? ;
+          <city> @linkml:String ? ;
+          <state> @linkml:String ? ;
+          <postal_code> @linkml:String ? ;
+          <country> @<Concept> ?
+       ) ;
+       rdf:type [ <PostalAddress> ] ?
+    )
+}
+
+<Procedure>  (
+    CLOSED {
+       (  $<Procedure_tes> (  &<InvestigativeEntity_tes> ;
+             rdf:type [ <InvestigativeEntity> ] ? ;
+             <classification> @<Concept> ?
+          ) ;
+          rdf:type [ <Procedure> ]
+       )
+    } OR @<InvestigativeProtocol> OR @<StudyDesign>
+)
+
+<ProcedureConfiguration> CLOSED {
+    (  $<ProcedureConfiguration_tes> (  &<State_tes> ;
+          rdf:type [ <State> ] ?
+       ) ;
+       rdf:type [ <ProcedureConfiguration> ] ?
+    )
+}
+
+<ProvenanceComponent>  (
+    @<AgentRole> OR @<CreationHistory> OR @<CreationHistoryAction> OR @<CreationMetadata>
+)
+
+<ProvenanceComponent_struct> {
+    (  $<ProvenanceComponent_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ?
+       ) ;
+       rdf:type [ <ProvenanceComponent> ] ?
+    )
+}
+
+<QuantityKind> CLOSED {
+    (  $<QuantityKind_tes> (  &<Concept_tes> ;
+          rdf:type [ <Concept> ] ?
+       ) ;
+       rdf:type [ <QuantityKind> ]
+    )
+}
+
+<Ratio> CLOSED {
+    (  $<Ratio_tes> (  &<StructuredValueComponent_tes> ;
+          rdf:type [ <StructuredValueComponent> ] ? ;
+          <numerator> @<AttributeValue> ? ;
+          <denominator> @<AttributeValue> ?
+       ) ;
+       rdf:type [ fhir:Ratio ] ?
+    )
+}
+
+<RecurringTemporalWindow> CLOSED {
+    (  $<RecurringTemporalWindow_tes> (  &<Temporal_tes> ;
+          rdf:type [ <Temporal> ] ? ;
+          <enumerated_times> @<Duration> ? ;
+          <count> @linkml:Integer ? ;
+          <period> @<Duration> ? ;
+          <period_unit> @<UnitConcept> ?
+       ) ;
+       rdf:type [ <RecurringTemporalWindow> ] ?
+    )
+}
+
+<Relationship> {
+    (  $<Relationship_tes> (  <has_time> @<Duration> ? ;
+          <subject> @<Thing> ? ;
+          <predicate> @<Concept> ? ;
+          <object> @<Thing> ?
+       ) ;
+       rdf:type [ <Relationship> ] ?
+    )
+}
+
+<RelativeLocation> CLOSED {
+    (  $<RelativeLocation_tes> (  &<LocationComponent_tes> ;
+          rdf:type [ <LocationComponent> ] ? ;
+          <relationship_type> @<Concept> ? ;
+          <target_location> @<Location> ?
+       ) ;
+       rdf:type [ <RelativeLocation> ] ?
+    )
+}
+
+<RelativeValue> CLOSED {
+    (  $<RelativeValue_tes> (  &<StructuredValueComponent_tes> ;
+          rdf:type [ <StructuredValueComponent> ] ? ;
+          <interpretation> @<Concept> ;
+          <reference> @<Concept> ? ;
+          <target_value> @<AttributeValue> ?
+       ) ;
+       rdf:type [ <RelativeValue> ] ?
+    )
+}
+
+<ResultMatrix> CLOSED {
+    (  $<ResultMatrix_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ? ;
+          <values> @linkml:Float ?
+       ) ;
+       rdf:type [ <ResultMatrix> ] ?
+    )
+}
+
+<Sample> CLOSED {
+    (  $<Sample_tes> (  &<Observable_tes> ;
+          rdf:type [ <Observable> ] ?
+       ) ;
+       rdf:type [ <Sample> ]
+    )
+}
+
+<State>  (
+    CLOSED {
+       (  $<State_tes> (  &<Intangible_tes> ;
+             rdf:type [ <Intangible> ] ? ;
+             <parameters> @<AttributeValue> *
+          ) ;
+          rdf:type [ <State> ] ?
+       )
+    } OR @<ProcedureConfiguration>
+)
+
+<StructuredValueComponent>  (
+    @<AttributeValue> OR @<Ratio> OR @<RelativeValue> OR @<ValueRange> OR @<ValueSeries>
+)
+
+<StructuredValueComponent_struct> {
+    (  $<StructuredValueComponent_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ?
+       ) ;
+       rdf:type [ <StructuredValueComponent> ] ?
+    )
+}
+
+<StudyDesign> CLOSED {
+    (  $<StudyDesign_tes> (  &<Procedure_tes> ;
+          rdf:type [ <Procedure> ] ? ;
+          <classification> @<Concept> ?
+       ) ;
+       rdf:type [ <StudyDesign> ]
+    )
+}
+
+<StudyHypothesis> CLOSED {
+    (  $<StudyHypothesis_tes> (  &<InformationEntity_tes> ;
+          rdf:type [ <InformationEntity> ] ?
+       ) ;
+       rdf:type [ <StudyHypothesis> ]
+    )
+}
+
+<StudyResult> CLOSED {
+    (  $<StudyResult_tes> (  &<InformationEntity_tes> ;
+          rdf:type [ <InformationEntity> ] ? ;
+          <hypothesis> @<StudyHypothesis> ? ;
+          <results> @<AttributeValue> *
+       ) ;
+       rdf:type [ <StudyResult> ]
+    )
+}
+
+<Temporal>  (
+    @<Duration> OR @<RecurringTemporalWindow> OR @<TimePoint>
+)
+
+<Temporal_struct> {
+    (  $<Temporal_tes> (  &<Intangible_tes> ;
+          rdf:type [ <Intangible> ] ?
+       ) ;
+       rdf:type [ <Temporal> ] ?
+    )
+}
+
+<Thing>  (
+    CLOSED {
+       (  $<Thing_tes> (  schema1:name @linkml:String ? ;
+             schema1:description @linkml:String ? ;
+             <type> @linkml:String ? ;
+             <classification> @<Concept> ? ;
+             <ontology_types> @<Concept> * ;
+             <has_location> @<Location> ? ;
+             <has_time> @<Duration> ? ;
+             <metadata> @<CreationHistory> ?
+          ) ;
+          rdf:type [ schema1:Thing ]
+       )
+    } OR @<Concept> OR @<DomainEntity> OR @<InvestigativeEntity>
+)
+
+<TimePoint> CLOSED {
+    (  $<TimePoint_tes> (  &<Temporal_tes> ;
+          rdf:type [ <Temporal> ] ? ;
+          <year_value> @linkml:Integer ? ;
+          <date_value> @linkml:Date ? ;
+          <time_value> @linkml:Time ? ;
+          <datetime_value> @linkml:Datetime ? ;
+          <marker_event> @<Event> ? ;
+          schema1:description @linkml:String ?
+       ) ;
+       rdf:type [ <TimePoint> ] ?
+    )
+}
+
+<UnitConcept> CLOSED {
+    (  $<UnitConcept_tes> (  &<Concept_tes> ;
+          rdf:type [ <Concept> ] ?
+       ) ;
+       rdf:type [ <UnitConcept> ]
+    )
+}
+
+<ValueRange> CLOSED {
+    (  $<ValueRange_tes> (  &<StructuredValueComponent_tes> ;
+          rdf:type [ <StructuredValueComponent> ] ? ;
+          <lower_bound> @linkml:Float ? ;
+          <upper_bound> @linkml:Float ?
+       ) ;
+       rdf:type [ fhir:Range ] ?
+    )
+}
+
+<ValueSeries> CLOSED {
+    (  $<ValueSeries_tes> (  &<StructuredValueComponent_tes> ;
+          rdf:type [ <StructuredValueComponent> ] ? ;
+          <values> @linkml:Float ?
+       ) ;
+       rdf:type [ <ValueSeries> ] ?
+    )
+}
+
+<Variable> CLOSED {
+    (  $<Variable_tes> (  &<Concept_tes> ;
+          rdf:type [ <Concept> ] ? ;
+          <fixed_unit> @<UnitConcept> ?
+       ) ;
+       rdf:type [ <Variable> ]
+    )
+}
+

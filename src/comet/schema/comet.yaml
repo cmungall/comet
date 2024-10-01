@@ -1,0 +1,26 @@
+id: https://w3id.org/comet
+name: comet
+title: comet
+description: |-
+  Common Data Model Elements
+license: MIT
+see_also:
+  - https://linkml.github.io/comet
+
+prefixes:
+  comet: https://w3id.org/comet/
+  linkml: https://w3id.org/linkml/
+  biolink: https://w3id.org/biolink/
+  schema: http://schema.org/
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  example: http://example.org/
+default_prefix: comet
+default_range: string
+
+imports:
+  - linkml:types
+  - core
+  - healthcare
+
+
+

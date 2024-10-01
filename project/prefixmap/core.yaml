@@ -1,0 +1,31 @@
+{
+   "BFO": "http://purl.obolibrary.org/obo/BFO_",
+   "IAO": "http://purl.obolibrary.org/obo/IAO_",
+   "PATO": "http://example.org/UNKNOWN/PATO/",
+   "UCUM": "http://example.org/UNKNOWN/UCUM/",
+   "UO": "http://example.org/UNKNOWN/UO/",
+   "bibo": "http://purl.org/ontology/bibo/",
+   "biolink": "https://w3id.org/biolink/",
+   "comet": "https://w3id.org/comet/",
+   "dcterms": "http://purl.org/dc/terms/",
+   "fhir": "http://hl7.org/fhir/",
+   "fibo.DatesAndTimes": "http://example.org/UNKNOWN/fibo.DatesAndTimes/",
+   "fibo.QuantitiesAndUnits": "http://example.org/UNKNOWN/fibo.QuantitiesAndUnits/",
+   "fibo.commons.PartiesAndSituations": "http://example.org/UNKNOWN/fibo.commons.PartiesAndSituations/",
+   "linkml": "https://w3id.org/linkml/",
+   "oboe-core": "http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#",
+   "prov": "http://example.org/UNKNOWN/prov/",
+   "qudt": "http://example.org/UNKNOWN/qudt/",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "schema": "http://schema.org/",
+   "Ratio": {
+      "@id": "fhir:Ratio"
+   },
+   "Thing": {
+      "@id": "schema:Thing"
+   },
+   "ValueRange": {
+      "@id": "fhir:Range"
+   }
+}

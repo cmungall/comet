@@ -1,0 +1,2349 @@
+@prefix comet: <https://w3id.org/comet/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/comet> a owl:Ontology ;
+    rdfs:label "comet" ;
+    dcterms:license "MIT" ;
+    dcterms:title "comet" ;
+    rdfs:seeAlso <https://linkml.github.io/comet> ;
+    skos:definition "Common Data Model Elements" .
+
+comet:CountScalar a rdfs:Datatype ;
+    owl:equivalentClass [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:integer [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:integer ;
+                        owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] ) ] .
+
+comet:CreationMetadata a owl:Class ;
+    rdfs:label "CreationMetadata" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:creators ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:contacts ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:abstract ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:creators ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:keywords ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:abstract ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:abstract ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:rights ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:contributors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:title ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:contributors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:rights ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:keywords ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:contacts ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:title ],
+        comet:ProvenanceComponent ;
+    skos:inScheme comet:core .
+
+comet:InvestigativeProtocolEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition .
+
+comet:SampleProcessingEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition .
+
+comet:StudyDesignEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition .
+
+comet:describes a owl:ObjectProperty ;
+    rdfs:label "describes" ;
+    rdfs:range comet:Thing ;
+    skos:definition "The thing that is being described" ;
+    skos:inScheme comet:core .
+
+comet:AgentRole a owl:Class ;
+    rdfs:label "AgentRole" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:agent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:agent ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:role ],
+        comet:ProvenanceComponent ;
+    skos:inScheme comet:core .
+
+comet:CreationHistoryAction a owl:Class ;
+    rdfs:label "CreationHistoryAction" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AgentRole ;
+            owl:onProperty comet:roles ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:roles ],
+        comet:ProvenanceComponent ;
+    skos:inScheme comet:core .
+
+comet:GeoBoxLocation a owl:Class ;
+    rdfs:label "GeoBoxLocation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:east_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:west_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:west_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:north_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:south_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:north_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:south_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:north_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:east_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:west_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:south_bounding_coordinate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:east_bounding_coordinate ],
+        comet:LocationComponent ;
+    skos:inScheme comet:core .
+
+comet:GeoLocation a owl:Class ;
+    rdfs:label "GeoLocation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:longitude ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:longitude ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:latitude ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:decimal ;
+            owl:onProperty comet:latitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:latitude ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:longitude ],
+        comet:LocationComponent ;
+    skos:inScheme comet:core .
+
+comet:PostalAddress a owl:Class ;
+    rdfs:label "PostalAddress" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:street_address ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:state ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:postal_code ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:country ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:state ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:street_address_additional ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:postal_code ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:street_address ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:country ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:city ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:country ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:street_address ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:street_address_additional ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:postal_code ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:state ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:street_address_additional ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:city ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:city ],
+        comet:LocationComponent ;
+    skos:definition "Represents an Address" ;
+    skos:exactMatch <http://example.org/omop/CARE_SITE>,
+        schema1:PostalAddress ;
+    skos:inScheme comet:core .
+
+comet:ProcedureConfiguration a owl:Class ;
+    rdfs:label "ProcedureConfiguration" ;
+    rdfs:subClassOf comet:State ;
+    skos:inScheme comet:core .
+
+comet:Ratio a owl:Class ;
+    rdfs:label "Ratio" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:numerator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:denominator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:denominator ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:numerator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:numerator ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:denominator ],
+        comet:StructuredValueComponent ;
+    skos:definition "A tuple of two quantities" ;
+    skos:exactMatch <http://hl7.org/fhir/Ratio> ;
+    skos:inScheme comet:core .
+
+comet:Relationship a owl:Class ;
+    rdfs:label "Relationship" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:subject ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Thing ;
+            owl:onProperty comet:subject ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:object ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Thing ;
+            owl:onProperty comet:object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:predicate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:predicate ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:predicate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:subject ],
+        linkml:ClassDefinition ;
+    skos:closeMatch rdfs:Statement ;
+    skos:inScheme comet:core .
+
+comet:RelativeLocation a owl:Class ;
+    rdfs:label "RelativeLocation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:relationship_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:target_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Location ;
+            owl:onProperty comet:target_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:relationship_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:relationship_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:target_location ],
+        comet:LocationComponent ;
+    skos:inScheme comet:core .
+
+comet:RelativeValue a owl:Class ;
+    rdfs:label "RelativeValue" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:interpretation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:reference ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:reference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:reference ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty comet:interpretation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:interpretation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:target_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:target_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:target_value ],
+        comet:StructuredValueComponent ;
+    skos:definition "A value that is relative to another value" ;
+    skos:inScheme comet:core .
+
+comet:ResultMatrix a owl:Class ;
+    rdfs:label "ResultMatrix" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:values ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty comet:values ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:values ],
+        comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:State a owl:Class ;
+    rdfs:label "State" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:parameters ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:parameters ],
+        comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:ValueRange a owl:Class ;
+    rdfs:label "ValueRange" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty comet:lower_bound ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:upper_bound ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:lower_bound ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:upper_bound ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:lower_bound ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty comet:upper_bound ],
+        comet:StructuredValueComponent ;
+    skos:definition "A quantity range is a property that can be measured or counted" ;
+    skos:exactMatch <http://hl7.org/fhir/Range> ;
+    skos:inScheme comet:core .
+
+comet:ValueSeries a owl:Class ;
+    rdfs:label "ValueSeries" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:values ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty comet:values ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:values ],
+        comet:StructuredValueComponent ;
+    skos:definition "A series of values" ;
+    skos:inScheme comet:core .
+
+<http://purl.obolibrary.org/obo/OBI_0002492> a owl:Class ;
+    rdfs:label "CASE" ;
+    rdfs:subClassOf comet:CaseOrControlEnum,
+        linkml:PermissibleValue .
+
+<http://purl.obolibrary.org/obo/OBI_0002493> a owl:Class ;
+    rdfs:label "CONTROL" ;
+    rdfs:subClassOf comet:CaseOrControlEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#as-text> a owl:Class ;
+    rdfs:label "as-text" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined> a owl:Class ;
+    rdfs:label "asked-declined" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown> a owl:Class ;
+    rdfs:label "asked-unknown" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#masked> a owl:Class ;
+    rdfs:label "masked" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#negative-infinity> a owl:Class ;
+    rdfs:label "negative-infinity" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#error>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#not-a-number> a owl:Class ;
+    rdfs:label "not-a-number" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#error>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#not-applicable> a owl:Class ;
+    rdfs:label "not-applicable" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#not-asked> a owl:Class ;
+    rdfs:label "not-asked" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#not-performed> a owl:Class ;
+    rdfs:label "not-performed" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#not-permitted> a owl:Class ;
+    rdfs:label "not-permitted" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#positive-infinity> a owl:Class ;
+    rdfs:label "positive-infinity" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#error>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown> a owl:Class ;
+    rdfs:label "temp-unknown" ;
+    rdfs:subClassOf <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown>,
+        comet:CodeSystemEnum .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#unsupported> a owl:Class ;
+    rdfs:label "unsupported" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+comet:CreationHistory a owl:Class ;
+    rdfs:label "CreationHistory" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:CreationHistoryAction ;
+            owl:onProperty comet:actions ],
+        comet:ProvenanceComponent ;
+    skos:inScheme comet:core .
+
+comet:Dataset a owl:Class ;
+    rdfs:label "Dataset" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:agents ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:observables ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:observations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:investigations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Sample ;
+            owl:onProperty comet:samples ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Observable ;
+            owl:onProperty comet:observables ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:agents ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:relationships ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:result_matrices ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:devices ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:ResultMatrix ;
+            owl:onProperty comet:result_matrices ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Device ;
+            owl:onProperty comet:devices ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:samples ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:concepts ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Observation ;
+            owl:onProperty comet:observations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Relationship ;
+            owl:onProperty comet:relationships ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:concepts ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Event ;
+            owl:onProperty comet:events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Investigation ;
+            owl:onProperty comet:investigations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:events ],
+        comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:EnvironmentalMaterial a owl:Class ;
+    rdfs:label "EnvironmentalMaterial" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:inScheme comet:bio .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Ambulance+Visit> a owl:Class ;
+    rdfs:label "Ambulance Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Case+Management+Visit> a owl:Class ;
+    rdfs:label "Case Management Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+Visit> a owl:Class ;
+    rdfs:label "Emergency Room Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+and+Inpatient+Visit> a owl:Class ;
+    rdfs:label "Emergency Room and Inpatient Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Home+Visit> a owl:Class ;
+    rdfs:label "Home Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Inpatient+Visit> a owl:Class ;
+    rdfs:label "Inpatient Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Laboratory+Visit> a owl:Class ;
+    rdfs:label "Laboratory Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Non-hospital+institution+Visit> a owl:Class ;
+    rdfs:label "Non-hospital institution Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Outpatient+Visit> a owl:Class ;
+    rdfs:label "Outpatient Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Pharmacy+Visit> a owl:Class ;
+    rdfs:label "Pharmacy Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/HealthcareEncounterClassification#Telehealth+Visit> a owl:Class ;
+    rdfs:label "Telehealth Visit" ;
+    rdfs:subClassOf comet:HealthcareEncounterClassification,
+        linkml:PermissibleValue .
+
+comet:InvestigativeProtocol a owl:Class ;
+    rdfs:label "InvestigativeProtocol" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty comet:protocols_io_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:protocols_io_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:protocols_io_url ],
+        comet:Procedure ;
+    skos:inScheme comet:core .
+
+comet:Microbiome a owl:Class ;
+    rdfs:label "Microbiome" ;
+    rdfs:subClassOf comet:OrganismPopulation ;
+    skos:inScheme comet:bio .
+
+comet:Organism a owl:Class ;
+    rdfs:label "Organism" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:inScheme comet:bio .
+
+comet:OrganismPart a owl:Class ;
+    rdfs:label "OrganismPart" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:inScheme comet:bio .
+
+comet:ParticipantInRole a owl:Class ;
+    rdfs:label "ParticipantInRole" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:participant ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:participant ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Thing ;
+            owl:onProperty comet:participant ],
+        comet:Intangible ;
+    skos:inScheme comet:core .
+
+<https://w3id.org/comet/PresenceEnum#ABOVE_DETECTION_LIMIT> a owl:Class ;
+    rdfs:label "ABOVE_DETECTION_LIMIT" ;
+    rdfs:subClassOf comet:PresenceEnum,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/PresenceEnum#ABSENT> a owl:Class ;
+    rdfs:label "ABSENT" ;
+    rdfs:subClassOf comet:PresenceEnum,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/PresenceEnum#BELOW_DETECTION_LIMIT> a owl:Class ;
+    rdfs:label "BELOW_DETECTION_LIMIT" ;
+    rdfs:subClassOf comet:PresenceEnum,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/PresenceEnum#PRESENT> a owl:Class ;
+    rdfs:label "PRESENT" ;
+    rdfs:subClassOf comet:PresenceEnum,
+        linkml:PermissibleValue .
+
+comet:QuantityKind a owl:Class ;
+    rdfs:label "QuantityKind" ;
+    rdfs:subClassOf comet:Concept ;
+    skos:exactMatch <fibo.QuantitiesAndUnits:ScalarQuantity>,
+        <qudt:QuantityKind> ;
+    skos:inScheme comet:core .
+
+comet:RecurringTemporalWindow a owl:Class ;
+    rdfs:label "RecurringTemporalWindow" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:period_unit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty comet:count ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:enumerated_times ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:count ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:period ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:period ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:enumerated_times ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:period_unit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:enumerated_times ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:UnitConcept ;
+            owl:onProperty comet:period_unit ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:period ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:count ],
+        comet:Temporal ;
+    skos:inScheme comet:core .
+
+<https://w3id.org/comet/RelativeTimeEnum#AFTER> a owl:Class ;
+    rdfs:label "AFTER" ;
+    rdfs:subClassOf comet:RelativeTimeEnum,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/RelativeTimeEnum#AT_SAME_TIME_AS> a owl:Class ;
+    rdfs:label "AT_SAME_TIME_AS" ;
+    rdfs:subClassOf comet:RelativeTimeEnum,
+        linkml:PermissibleValue .
+
+<https://w3id.org/comet/RelativeTimeEnum#BEFORE> a owl:Class ;
+    rdfs:label "BEFORE" ;
+    rdfs:subClassOf comet:RelativeTimeEnum,
+        linkml:PermissibleValue .
+
+comet:Variable a owl:Class ;
+    rdfs:label "Variable" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:UnitConcept ;
+            owl:onProperty comet:fixed_unit ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:fixed_unit ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:fixed_unit ],
+        comet:Concept ;
+    skos:inScheme comet:core .
+
+comet:actions a owl:ObjectProperty ;
+    rdfs:label "actions" ;
+    skos:inScheme comet:core .
+
+comet:agents a owl:ObjectProperty ;
+    rdfs:label "agents" ;
+    skos:inScheme comet:core .
+
+comet:concepts a owl:ObjectProperty ;
+    rdfs:label "concepts" ;
+    skos:inScheme comet:core .
+
+comet:contacts a owl:ObjectProperty ;
+    rdfs:label "contacts" ;
+    skos:definition "A contact point for a person or organization" ;
+    skos:inScheme comet:core .
+
+comet:contributors a owl:ObjectProperty ;
+    rdfs:label "contributors" ;
+    skos:definition "A person or organization that contributed to the creation of the work" ;
+    skos:inScheme comet:core .
+
+comet:creators a owl:ObjectProperty ;
+    rdfs:label "creators" ;
+    skos:definition "The person or organization who created the work" ;
+    skos:inScheme comet:core .
+
+comet:derived_from a owl:ObjectProperty ;
+    rdfs:label "derived_from" ;
+    skos:inScheme comet:core .
+
+comet:devices a owl:ObjectProperty ;
+    rdfs:label "devices" ;
+    skos:inScheme comet:core .
+
+comet:events a owl:ObjectProperty ;
+    rdfs:label "events" ;
+    skos:inScheme comet:core .
+
+comet:has_participants a owl:ObjectProperty ;
+    rdfs:label "has_participants" ;
+    rdfs:range comet:ParticipantInRole ;
+    skos:inScheme comet:core .
+
+comet:investigations a owl:ObjectProperty ;
+    rdfs:label "investigations" ;
+    skos:inScheme comet:core .
+
+comet:keywords a owl:DatatypeProperty ;
+    rdfs:label "keywords" ;
+    skos:definition "Keywords or tags used to describe this item" ;
+    skos:inScheme comet:core .
+
+comet:observables a owl:ObjectProperty ;
+    rdfs:label "observables" ;
+    skos:inScheme comet:core .
+
+comet:observations a owl:ObjectProperty ;
+    rdfs:label "observations" ;
+    skos:inScheme comet:core .
+
+comet:ontology_types a owl:ObjectProperty ;
+    rdfs:label "ontology_types" ;
+    rdfs:range comet:Concept ;
+    skos:definition "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy." ;
+    skos:inScheme comet:core .
+
+comet:parameters a owl:ObjectProperty ;
+    rdfs:label "parameters" ;
+    skos:inScheme comet:core .
+
+comet:relationships a owl:ObjectProperty ;
+    rdfs:label "relationships" ;
+    skos:inScheme comet:core .
+
+comet:relative_values a owl:ObjectProperty ;
+    rdfs:label "relative_values" ;
+    skos:inScheme comet:core .
+
+comet:result_matrices a owl:ObjectProperty ;
+    rdfs:label "result_matrices" ;
+    skos:inScheme comet:core .
+
+comet:roles a owl:ObjectProperty ;
+    rdfs:label "roles" ;
+    skos:inScheme comet:core .
+
+comet:samples a owl:ObjectProperty ;
+    rdfs:label "samples" ;
+    skos:inScheme comet:core .
+
+comet:variables a owl:ObjectProperty ;
+    rdfs:label "variables" ;
+    skos:inScheme comet:core .
+
+<https://w3id.org/linkml-common/Cohort> a owl:Class ;
+    rdfs:label "Cohort" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:definition "A group of patients with a common characteristic" ;
+    skos:exactMatch <http://example.org/omop/COHORT> ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+<https://w3id.org/linkml-common/HealthcareEncounter> a owl:Class ;
+    rdfs:label "HealthcareEncounter" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://w3id.org/linkml-common/patient> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/linkml-common/HealthcareOrganization> ;
+            owl:onProperty <https://w3id.org/linkml-common/provider> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:HealthcareEncounterClassification ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://w3id.org/linkml-common/patient> ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <https://w3id.org/linkml-common/Patient> ;
+            owl:onProperty <https://w3id.org/linkml-common/patient> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty <https://w3id.org/linkml-common/provider> ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty <https://w3id.org/linkml-common/provider> ],
+        comet:Event ;
+    skos:definition "An interaction between a patient and one or more healthcare providers" ;
+    skos:exactMatch <http://example.org/omop/VISIT_OCCURRENCE> ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+<https://w3id.org/linkml-common/HealthcareSite> a owl:Class ;
+    rdfs:label "HealthcareSite" ;
+    rdfs:subClassOf comet:InvestigationSite ;
+    skos:exactMatch <http://example.org/omop/CARE_SITE> ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+comet:AttributeConcept a owl:Class ;
+    rdfs:label "AttributeConcept" ;
+    rdfs:subClassOf comet:Concept ;
+    skos:exactMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Characteristic> ;
+    skos:inScheme comet:core .
+
+comet:CaseOrControlEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition ;
+    owl:unionOf ( <http://purl.obolibrary.org/obo/OBI_0002492> <http://purl.obolibrary.org/obo/OBI_0002493> ) ;
+    linkml:permissible_values <http://purl.obolibrary.org/obo/OBI_0002492>,
+        <http://purl.obolibrary.org/obo/OBI_0002493> .
+
+comet:DataObject a owl:Class ;
+    rdfs:label "DataObject" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:InvestigationSite a owl:Class ;
+    rdfs:label "InvestigationSite" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:Location a owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:geo_box_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:geo_box_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:named_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:RelativeLocation ;
+            owl:onProperty comet:relative_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:GeoBoxLocation ;
+            owl:onProperty comet:geo_box_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:named_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:relative_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:GeoLocation ;
+            owl:onProperty comet:geo_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:relative_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:named_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:geo_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:postal_address ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:geo_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:PostalAddress ;
+            owl:onProperty comet:postal_address ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:postal_address ],
+        comet:LocationComponent ;
+    skos:inScheme comet:core .
+
+comet:OrganismPopulation a owl:Class ;
+    rdfs:label "OrganismPopulation" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:inScheme comet:bio .
+
+comet:Organization a owl:Class ;
+    rdfs:label "Organization" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:RelativeTimeEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition ;
+    owl:unionOf ( <https://w3id.org/comet/RelativeTimeEnum#BEFORE> <https://w3id.org/comet/RelativeTimeEnum#AFTER> <https://w3id.org/comet/RelativeTimeEnum#AT_SAME_TIME_AS> ) ;
+    linkml:permissible_values <https://w3id.org/comet/RelativeTimeEnum#AFTER>,
+        <https://w3id.org/comet/RelativeTimeEnum#AT_SAME_TIME_AS>,
+        <https://w3id.org/comet/RelativeTimeEnum#BEFORE> .
+
+comet:StudyDesign a owl:Class ;
+    rdfs:label "StudyDesign" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:classification ],
+        comet:Procedure ;
+    skos:inScheme comet:core .
+
+comet:StudyResult a owl:Class ;
+    rdfs:label "StudyResult" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:StudyHypothesis ;
+            owl:onProperty comet:hypothesis ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:hypothesis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:results ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:hypothesis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:results ],
+        comet:InformationEntity ;
+    skos:inScheme comet:core .
+
+comet:Temporal a owl:Class ;
+    rdfs:label "Temporal" ;
+    rdfs:subClassOf comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:abstract a owl:DatatypeProperty ;
+    rdfs:label "abstract" ;
+    skos:definition "A summary of the item" ;
+    skos:inScheme comet:core .
+
+comet:agent a owl:ObjectProperty ;
+    rdfs:label "agent" ;
+    skos:inScheme comet:core .
+
+comet:attribute a owl:ObjectProperty ;
+    rdfs:label "attribute" ;
+    skos:exactMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofCharacteristic>,
+        <http://www.opengis.net/om/2.0observedProperty> ;
+    skos:inScheme comet:core .
+
+comet:case_or_control a owl:ObjectProperty ;
+    rdfs:label "case_or_control" ;
+    skos:inScheme comet:core .
+
+comet:city a owl:DatatypeProperty ;
+    rdfs:label "city" ;
+    skos:definition "The city" ;
+    skos:inScheme comet:core .
+
+comet:count a owl:DatatypeProperty ;
+    rdfs:label "count" ;
+    skos:inScheme comet:core .
+
+comet:country a owl:ObjectProperty ;
+    rdfs:label "country" ;
+    skos:definition "The country" ;
+    skos:inScheme comet:core .
+
+comet:data_used a owl:ObjectProperty ;
+    rdfs:label "data_used" ;
+    skos:inScheme comet:core .
+
+comet:date_value a owl:DatatypeProperty ;
+    rdfs:label "date_value" ;
+    rdfs:range xsd:date ;
+    skos:inScheme comet:core .
+
+comet:datetime_value a owl:DatatypeProperty ;
+    rdfs:label "datetime_value" ;
+    rdfs:range xsd:dateTime ;
+    skos:inScheme comet:core .
+
+comet:denominator a owl:ObjectProperty ;
+    rdfs:label "denominator" ;
+    skos:definition "The denominator of the ratio" ;
+    skos:inScheme comet:core .
+
+comet:design a owl:ObjectProperty ;
+    rdfs:label "design" ;
+    skos:inScheme comet:core .
+
+comet:device_used a owl:ObjectProperty ;
+    rdfs:label "device_used" ;
+    skos:inScheme comet:core .
+
+comet:east_bounding_coordinate a owl:DatatypeProperty ;
+    rdfs:label "east_bounding_coordinate" ;
+    skos:definition "The easternmost coordinate of the location" ;
+    skos:inScheme comet:core .
+
+comet:end_time a owl:ObjectProperty ;
+    rdfs:label "end_time" ;
+    rdfs:range comet:TimePoint ;
+    skos:inScheme comet:core .
+
+comet:enumerated_times a owl:ObjectProperty ;
+    rdfs:label "enumerated_times" ;
+    skos:inScheme comet:core .
+
+comet:fixed_unit a owl:ObjectProperty ;
+    rdfs:label "fixed_unit" ;
+    skos:inScheme comet:core .
+
+comet:geo_box_location a owl:ObjectProperty ;
+    rdfs:label "geo_box_location" ;
+    skos:definition "A string representation of a geobox location" ;
+    skos:inScheme comet:core .
+
+comet:geo_location a owl:ObjectProperty ;
+    rdfs:label "geo_location" ;
+    skos:definition "A string representation of a geolocation" ;
+    skos:inScheme comet:core .
+
+comet:happens_at a owl:ObjectProperty ;
+    rdfs:label "happens_at" ;
+    rdfs:range comet:TimePoint ;
+    skos:inScheme comet:core .
+
+comet:has_location a owl:ObjectProperty ;
+    rdfs:label "has_location" ;
+    rdfs:range comet:Location ;
+    skos:inScheme comet:core .
+
+comet:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "A unique identifier for a thing" ;
+    skos:inScheme comet:core .
+
+comet:interpretation a owl:ObjectProperty ;
+    rdfs:label "interpretation" ;
+    skos:definition "The type of relationship, e.g. high" ;
+    skos:inScheme comet:core .
+
+comet:is_about a owl:ObjectProperty ;
+    rdfs:label "is_about" ;
+    skos:exactMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#ofEntity> ;
+    skos:inScheme comet:core .
+
+comet:is_ongoing_as_of a owl:ObjectProperty ;
+    rdfs:label "is_ongoing_as_of" ;
+    rdfs:range comet:TimePoint ;
+    skos:inScheme comet:core .
+
+comet:latitude a owl:DatatypeProperty ;
+    rdfs:label "latitude" ;
+    skos:inScheme comet:core .
+
+comet:longitude a owl:DatatypeProperty ;
+    rdfs:label "longitude" ;
+    skos:inScheme comet:core .
+
+comet:lower_bound a owl:DatatypeProperty ;
+    rdfs:label "lower_bound" ;
+    skos:definition "The lower bound of the range" ;
+    skos:inScheme comet:core .
+
+comet:marker_event a owl:ObjectProperty ;
+    rdfs:label "marker_event" ;
+    rdfs:range comet:Event ;
+    skos:inScheme comet:core .
+
+comet:metadata a owl:ObjectProperty ;
+    rdfs:label "metadata" ;
+    rdfs:range comet:CreationHistory ;
+    skos:inScheme comet:core .
+
+comet:method a owl:ObjectProperty ;
+    rdfs:label "method" ;
+    skos:inScheme comet:core .
+
+comet:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    skos:definition "A human-readable name for a thing" ;
+    skos:exactMatch rdfs:label ;
+    skos:inScheme comet:core .
+
+comet:named_location a owl:ObjectProperty ;
+    rdfs:label "named_location" ;
+    skos:inScheme comet:core .
+
+comet:north_bounding_coordinate a owl:DatatypeProperty ;
+    rdfs:label "north_bounding_coordinate" ;
+    skos:definition "The northernmost coordinate of the location" ;
+    skos:inScheme comet:core .
+
+comet:numerator a owl:ObjectProperty ;
+    rdfs:label "numerator" ;
+    skos:definition "The numerator of the ratio" ;
+    skos:inScheme comet:core .
+
+comet:numeric_value a owl:DatatypeProperty ;
+    rdfs:label "numeric_value" ;
+    skos:definition "The numeric value of the observation" ;
+    skos:inScheme comet:core .
+
+comet:object a owl:ObjectProperty ;
+    rdfs:label "object" ;
+    rdfs:range comet:Thing ;
+    skos:definition "The object of a relationship" ;
+    skos:inScheme comet:core .
+
+comet:objectives a owl:DatatypeProperty ;
+    rdfs:label "objectives" ;
+    skos:inScheme comet:core .
+
+comet:part_of a owl:ObjectProperty ;
+    rdfs:label "part_of" ;
+    skos:inScheme comet:core .
+
+comet:participant a owl:ObjectProperty ;
+    rdfs:label "participant" ;
+    skos:inScheme comet:core .
+
+comet:performer a owl:ObjectProperty ;
+    rdfs:label "performer" ;
+    skos:exactMatch <http://hl7.org/fhir/performer>,
+        prov:wasAssociatedWith ;
+    skos:inScheme comet:core .
+
+comet:period a owl:ObjectProperty ;
+    rdfs:label "period" ;
+    skos:inScheme comet:core .
+
+comet:period_unit a owl:ObjectProperty ;
+    rdfs:label "period_unit" ;
+    skos:inScheme comet:core .
+
+comet:postal_address a owl:ObjectProperty ;
+    rdfs:label "postal_address" ;
+    skos:definition "A postal address" ;
+    skos:inScheme comet:core .
+
+comet:postal_code a owl:DatatypeProperty ;
+    rdfs:label "postal_code" ;
+    skos:definition "The postal code or zip code" ;
+    skos:inScheme comet:core .
+
+comet:predicate a owl:ObjectProperty ;
+    rdfs:label "predicate" ;
+    skos:inScheme comet:core .
+
+comet:presence_value a owl:ObjectProperty ;
+    rdfs:label "presence_value" ;
+    skos:inScheme comet:core .
+
+comet:procedure_configuration a owl:ObjectProperty ;
+    rdfs:label "procedure_configuration" ;
+    skos:inScheme comet:core .
+
+comet:procedure_used a owl:ObjectProperty ;
+    rdfs:label "procedure_used" ;
+    skos:inScheme comet:core .
+
+comet:protocols_io_url a owl:DatatypeProperty ;
+    rdfs:label "protocols_io_url" ;
+    skos:inScheme comet:core .
+
+comet:qualitative_value a owl:ObjectProperty ;
+    rdfs:label "qualitative_value" ;
+    skos:definition "A qualitative value" ;
+    skos:inScheme comet:core .
+
+comet:ratio a owl:ObjectProperty ;
+    rdfs:label "ratio" ;
+    skos:definition "The ratio of the value" ;
+    skos:inScheme comet:core .
+
+comet:recurring a owl:ObjectProperty ;
+    rdfs:label "recurring" ;
+    rdfs:range comet:RecurringTemporalWindow ;
+    skos:inScheme comet:core .
+
+comet:reference a owl:ObjectProperty ;
+    rdfs:label "reference" ;
+    skos:inScheme comet:core .
+
+comet:relationship_type a owl:ObjectProperty ;
+    rdfs:label "relationship_type" ;
+    skos:inScheme comet:core .
+
+comet:relative_location a owl:ObjectProperty ;
+    rdfs:label "relative_location" ;
+    skos:inScheme comet:core .
+
+comet:result a owl:ObjectProperty ;
+    rdfs:label "result" ;
+    skos:exactMatch <http://www.opengis.net/om/2.0result> ;
+    skos:inScheme comet:core .
+
+comet:rights a owl:DatatypeProperty ;
+    rdfs:label "rights" ;
+    skos:definition "Information about rights held in and over the item" ;
+    skos:inScheme comet:core .
+
+comet:sample_used a owl:ObjectProperty ;
+    rdfs:label "sample_used" ;
+    skos:inScheme comet:core .
+
+comet:south_bounding_coordinate a owl:DatatypeProperty ;
+    rdfs:label "south_bounding_coordinate" ;
+    skos:definition "The southernmost coordinate of the location" ;
+    skos:inScheme comet:core .
+
+comet:start_time a owl:ObjectProperty ;
+    rdfs:label "start_time" ;
+    rdfs:range comet:TimePoint ;
+    skos:inScheme comet:core .
+
+comet:state a owl:DatatypeProperty ;
+    rdfs:label "state" ;
+    skos:definition "The state" ;
+    skos:inScheme comet:core .
+
+comet:street_address a owl:DatatypeProperty ;
+    rdfs:label "street_address" ;
+    skos:definition "The street address" ;
+    skos:exactMatch <http://example.org/omop/address_1> ;
+    skos:inScheme comet:core .
+
+comet:street_address_additional a owl:DatatypeProperty ;
+    rdfs:label "street_address_additional" ;
+    skos:exactMatch <http://example.org/omop/address_2> ;
+    skos:inScheme comet:core .
+
+comet:subject a owl:ObjectProperty ;
+    rdfs:label "subject" ;
+    rdfs:range comet:Thing ;
+    skos:definition "The subject of a relationship" ;
+    skos:inScheme comet:core .
+
+comet:target a owl:ObjectProperty ;
+    rdfs:label "target" ;
+    skos:inScheme comet:core .
+
+comet:target_location a owl:ObjectProperty ;
+    rdfs:label "target_location" ;
+    skos:inScheme comet:core .
+
+comet:target_value a owl:ObjectProperty ;
+    rdfs:label "target_value" ;
+    skos:definition "The target value" ;
+    skos:inScheme comet:core .
+
+comet:time_value a owl:DatatypeProperty ;
+    rdfs:label "time_value" ;
+    rdfs:range xsd:time ;
+    skos:inScheme comet:core .
+
+comet:title a owl:DatatypeProperty ;
+    rdfs:label "title" ;
+    skos:definition "The title of the item" ;
+    skos:exactMatch dcterms:title ;
+    skos:inScheme comet:core .
+
+comet:unit a owl:ObjectProperty ;
+    rdfs:label "unit" ;
+    skos:exactMatch schema1:unitCode,
+        <qudt:unit> ;
+    skos:inScheme comet:core .
+
+comet:upper_bound a owl:DatatypeProperty ;
+    rdfs:label "upper_bound" ;
+    skos:definition "The upper bound of the range" ;
+    skos:inScheme comet:core .
+
+comet:value_absence_reason a owl:ObjectProperty ;
+    rdfs:label "value_absence_reason" ;
+    skos:definition "The reason for the absence of a value" ;
+    skos:exactMatch <http://hl7.org/fhir/dataAbsentReason> ;
+    skos:inScheme comet:core .
+
+comet:value_range a owl:ObjectProperty ;
+    rdfs:label "value_range" ;
+    skos:definition "The range of the value" ;
+    skos:inScheme comet:core .
+
+comet:value_series a owl:ObjectProperty ;
+    rdfs:label "value_series" ;
+    skos:definition "A series of values" ;
+    skos:inScheme comet:core .
+
+comet:west_bounding_coordinate a owl:DatatypeProperty ;
+    rdfs:label "west_bounding_coordinate" ;
+    skos:definition "The westernmost coordinate of the location" ;
+    skos:inScheme comet:core .
+
+comet:year_value a owl:DatatypeProperty ;
+    rdfs:label "year_value" ;
+    rdfs:range xsd:integer ;
+    skos:inScheme comet:core .
+
+<https://w3id.org/linkml-common/HealthcareOrganization> a owl:Class ;
+    rdfs:label "HealthcareOrganization" ;
+    rdfs:subClassOf comet:Organization ;
+    skos:definition "An organization that provides healthcare services" ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+<https://w3id.org/linkml-common/Patient> a owl:Class ;
+    rdfs:label "Patient" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:exactMatch <http://hl7.org/fhir/Patient> ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+<https://w3id.org/linkml-common/patient> a owl:ObjectProperty ;
+    rdfs:label "patient" ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+<https://w3id.org/linkml-common/provider> a owl:ObjectProperty ;
+    rdfs:label "provider" ;
+    skos:inScheme <https://w3id.org/linkml-common/healthcare> .
+
+comet:Device a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:DomainEntity a owl:Class ;
+    rdfs:label "DomainEntity" ;
+    rdfs:subClassOf comet:Thing ;
+    skos:inScheme comet:core .
+
+comet:InformationEntity a owl:Class ;
+    rdfs:label "InformationEntity" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:Investigation a owl:Class ;
+    rdfs:label "Investigation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:variables ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:design ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:objectives ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:objectives ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:StudyDesign ;
+            owl:onProperty comet:design ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:variables ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:results ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:StudyHypothesis ;
+            owl:onProperty comet:hypothesis ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:design ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:hypothesis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:StudyResult ;
+            owl:onProperty comet:results ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:objectives ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:hypothesis ],
+        comet:InvestigativeEntity ;
+    skos:inScheme comet:core .
+
+comet:Observation a owl:Class ;
+    rdfs:label "Observation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:Observation ;
+            owl:onProperty comet:derived_from ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:derived_from ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Sample ;
+            owl:onProperty comet:sample_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:data_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:part_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:result ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:performer ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Procedure ;
+            owl:onProperty comet:procedure_used ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Device ;
+            owl:onProperty comet:device_used ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:result ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:result ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:ProcedureConfiguration ;
+            owl:onProperty comet:procedure_configuration ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Observable ;
+            owl:onProperty comet:is_about ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:part_of ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:data_used ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Agent ;
+            owl:onProperty comet:performer ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:sample_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:device_used ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Investigation ;
+            owl:onProperty comet:part_of ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:procedure_configuration ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:procedure_used ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:DataObject ;
+            owl:onProperty comet:data_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:sample_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:procedure_used ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:device_used ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:is_about ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:performer ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:procedure_configuration ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:method ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:is_about ],
+        comet:InvestigativeEntity ;
+    skos:closeMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Measurement>,
+        schema1:PropertyValue ;
+    skos:inScheme comet:core .
+
+comet:ProvenanceComponent a owl:Class ;
+    rdfs:label "ProvenanceComponent" ;
+    rdfs:subClassOf comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:Sample a owl:Class ;
+    rdfs:label "Sample" ;
+    rdfs:subClassOf comet:Observable ;
+    skos:inScheme comet:core .
+
+comet:StudyHypothesis a owl:Class ;
+    rdfs:label "StudyHypothesis" ;
+    rdfs:subClassOf comet:InformationEntity ;
+    skos:inScheme comet:core .
+
+comet:properties a owl:ObjectProperty ;
+    rdfs:label "properties" ;
+    rdfs:range comet:AttributeValue ;
+    skos:inScheme comet:core .
+
+comet:results a owl:ObjectProperty .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#error> a owl:Class ;
+    rdfs:label "error" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+comet:LocationComponent a owl:Class ;
+    rdfs:label "LocationComponent" ;
+    rdfs:subClassOf comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:PresenceEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition ;
+    owl:unionOf ( <https://w3id.org/comet/PresenceEnum#PRESENT> <https://w3id.org/comet/PresenceEnum#ABSENT> <https://w3id.org/comet/PresenceEnum#BELOW_DETECTION_LIMIT> <https://w3id.org/comet/PresenceEnum#ABOVE_DETECTION_LIMIT> ) ;
+    linkml:permissible_values <https://w3id.org/comet/PresenceEnum#ABOVE_DETECTION_LIMIT>,
+        <https://w3id.org/comet/PresenceEnum#ABSENT>,
+        <https://w3id.org/comet/PresenceEnum#BELOW_DETECTION_LIMIT>,
+        <https://w3id.org/comet/PresenceEnum#PRESENT> .
+
+comet:Procedure a owl:Class ;
+    rdfs:label "Procedure" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:classification ],
+        comet:InvestigativeEntity ;
+    skos:closeMatch <http://purl.obolibrary.org/obo/OBI_0000070>,
+        <http://purl.obolibrary.org/obo/OBI_0000260>,
+        <http://purl.obolibrary.org/obo/OBI_0000272> ;
+    skos:inScheme comet:core .
+
+comet:StructuredValueComponent a owl:Class ;
+    rdfs:label "StructuredValueComponent" ;
+    rdfs:subClassOf comet:Intangible ;
+    skos:inScheme comet:core .
+
+comet:UnitConcept a owl:Class ;
+    rdfs:label "UnitConcept" ;
+    rdfs:subClassOf comet:Concept ;
+    skos:exactMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Unit>,
+        <qudt:Unit> ;
+    skos:inScheme comet:core .
+
+<http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown> a owl:Class ;
+    rdfs:label "unknown" ;
+    rdfs:subClassOf comet:CodeSystemEnum,
+        linkml:PermissibleValue .
+
+comet:Event a owl:Class ;
+    rdfs:label "Event" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:properties ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:properties ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:ParticipantInRole ;
+            owl:onProperty comet:has_participants ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_participants ],
+        comet:DomainEntity ;
+    skos:definition "A thing that happens to and potentially causally influences one of more participants." ;
+    skos:inScheme comet:core ;
+    skos:note "events can also be treated as observations where this suits the analysis, but in general events are not considered to be variables and instead represent some non-varying feature of the effected observables",
+        "this class should be used for events that affect observables under study, processes such as investigations and assays should not use this" .
+
+comet:hypothesis a owl:ObjectProperty .
+
+comet:role a owl:ObjectProperty .
+
+comet:values a owl:DatatypeProperty .
+
+comet:Intangible a owl:Class ;
+    rdfs:label "Intangible" ;
+    rdfs:subClassOf linkml:ClassDefinition ;
+    skos:closeMatch schema1:Intangible ;
+    skos:inScheme comet:core .
+
+comet:Agent a owl:Class ;
+    rdfs:label "Agent" ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    skos:definition "Represents an Agent" ;
+    skos:exactMatch <fibo.commons.PartiesAndSituations:Agent>,
+        prov:Agent ;
+    skos:inScheme comet:core .
+
+comet:Duration a owl:Class ;
+    rdfs:label "Duration" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:TimePoint ;
+            owl:onProperty comet:happens_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:recurring ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:start_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:RecurringTemporalWindow ;
+            owl:onProperty comet:recurring ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:end_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:TimePoint ;
+            owl:onProperty comet:end_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:happens_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:is_ongoing_as_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:TimePoint ;
+            owl:onProperty comet:start_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:recurring ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:start_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:happens_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:is_ongoing_as_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:TimePoint ;
+            owl:onProperty comet:is_ongoing_as_of ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:end_time ],
+        comet:Temporal ;
+    skos:inScheme comet:core .
+
+comet:TimePoint a owl:Class ;
+    rdfs:label "TimePoint" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:year_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Event ;
+            owl:onProperty comet:marker_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty comet:datetime_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:time_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty comet:date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:marker_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:marker_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:time_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:time ;
+            owl:onProperty comet:time_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:datetime_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty comet:year_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:year_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:datetime_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:date_value ],
+        comet:Temporal ;
+    skos:definition "A point in time. Can be fully specified, or specified in relative terms." ;
+    skos:exactMatch <fibo.DatesAndTimes:TimeInstant> ;
+    skos:inScheme comet:core .
+
+comet:AttributeValue a owl:Class ;
+    rdfs:label "AttributeValue" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:unit ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:numeric_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:value_range ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:target ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:PresenceEnum ;
+            owl:onProperty comet:presence_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeConcept ;
+            owl:onProperty comet:attribute ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:attribute ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:ratio ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:qualitative_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:numeric_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:RelativeValue ;
+            owl:onProperty comet:relative_values ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Ratio ;
+            owl:onProperty comet:ratio ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:ValueSeries ;
+            owl:onProperty comet:value_series ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:value_range ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:ValueRange ;
+            owl:onProperty comet:value_range ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:value_absence_reason ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:UnitConcept ;
+            owl:onProperty comet:unit ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:presence_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:qualitative_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:value_absence_reason ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:value_series ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:ratio ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:value_series ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:presence_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:target ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:target ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:qualitative_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:relative_values ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:unit ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:value_absence_reason ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty comet:numeric_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:attribute ],
+        comet:StructuredValueComponent ;
+    skos:closeMatch <http://hl7.org/fhir/Quantity>,
+        schema1:PropertyValue,
+        schema1:Quantity ;
+    skos:exactMatch schema1:Quantity ;
+    skos:inScheme comet:core .
+
+comet:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    skos:definition "A human-readable description for a thing" ;
+    skos:inScheme comet:core .
+
+comet:Observable a owl:Class ;
+    rdfs:label "Observable" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:CaseOrControlEnum ;
+            owl:onProperty comet:case_or_control ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:case_or_control ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:AttributeValue ;
+            owl:onProperty comet:properties ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:properties ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:case_or_control ],
+        comet:DomainEntity ;
+    skos:definition "A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain." ;
+    skos:exactMatch <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#Entity> ;
+    skos:inScheme comet:core .
+
+comet:Thing a owl:Class ;
+    rdfs:label "Thing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom comet:Location ;
+            owl:onProperty comet:has_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:ontology_types ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty comet:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:has_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:has_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:ontology_types ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty comet:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty comet:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:CreationHistory ;
+            owl:onProperty comet:metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty comet:metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Concept ;
+            owl:onProperty comet:classification ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty comet:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom comet:Duration ;
+            owl:onProperty comet:has_time ],
+        linkml:ClassDefinition ;
+    skos:exactMatch schema1:Thing ;
+    skos:inScheme comet:core .
+
+comet:HealthcareEncounterClassification a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition ;
+    owl:unionOf ( <https://w3id.org/comet/HealthcareEncounterClassification#Inpatient+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+and+Inpatient+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Non-hospital+institution+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Outpatient+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Home+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Telehealth+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Pharmacy+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Laboratory+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Ambulance+Visit> <https://w3id.org/comet/HealthcareEncounterClassification#Case+Management+Visit> ) ;
+    linkml:permissible_values <https://w3id.org/comet/HealthcareEncounterClassification#Ambulance+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Case+Management+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Emergency+Room+and+Inpatient+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Home+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Inpatient+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Laboratory+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Non-hospital+institution+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Outpatient+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Pharmacy+Visit>,
+        <https://w3id.org/comet/HealthcareEncounterClassification#Telehealth+Visit> .
+
+comet:InvestigativeEntity a owl:Class ;
+    rdfs:label "InvestigativeEntity" ;
+    rdfs:subClassOf comet:Thing ;
+    skos:inScheme comet:core .
+
+comet:CodeSystemEnum a owl:Class ;
+    rdfs:subClassOf linkml:EnumDefinition ;
+    owl:unionOf ( <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown> <http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown> <http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown> <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-asked> <http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined> <http://terminology.hl7.org/CodeSystem/data-absent-reason#masked> <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-applicable> <http://terminology.hl7.org/CodeSystem/data-absent-reason#unsupported> <http://terminology.hl7.org/CodeSystem/data-absent-reason#as-text> <http://terminology.hl7.org/CodeSystem/data-absent-reason#error> <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-a-number> <http://terminology.hl7.org/CodeSystem/data-absent-reason#negative-infinity> <http://terminology.hl7.org/CodeSystem/data-absent-reason#positive-infinity> <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-performed> <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-permitted> ) ;
+    linkml:permissible_values <http://terminology.hl7.org/CodeSystem/data-absent-reason#as-text>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-declined>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#asked-unknown>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#error>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#masked>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#negative-infinity>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-a-number>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-applicable>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-asked>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-performed>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#not-permitted>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#positive-infinity>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#temp-unknown>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#unknown>,
+        <http://terminology.hl7.org/CodeSystem/data-absent-reason#unsupported> .
+
+comet:classification a owl:ObjectProperty ;
+    rdfs:label "classification" ;
+    rdfs:range comet:Concept ;
+    skos:definition "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings." ;
+    skos:inScheme comet:core .
+
+comet:has_time a owl:ObjectProperty ;
+    rdfs:label "has_time" ;
+    rdfs:range comet:Duration ;
+    skos:inScheme comet:core .
+
+comet:Concept a owl:Class ;
+    rdfs:label "Concept" ;
+    rdfs:subClassOf comet:Thing ;
+    skos:inScheme comet:core .
+
+comet:type a owl:DatatypeProperty ;
+    rdfs:label "type" ;
+    rdfs:range xsd:string ;
+    skos:definition "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`." ;
+    skos:inScheme comet:core .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Variable ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Variable .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Microbiome ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Microbiome .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:InvestigativeEntity ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:InvestigativeEntity .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:OrganismPopulation ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:OrganismPopulation .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Investigation ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Investigation .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://w3id.org/linkml-common/HealthcareEncounter> ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom <https://w3id.org/linkml-common/HealthcareEncounter> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:DataObject ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:DataObject .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:AttributeConcept ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:AttributeConcept .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://w3id.org/linkml-common/HealthcareSite> ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom <https://w3id.org/linkml-common/HealthcareSite> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Device ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Device .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:OrganismPart ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:OrganismPart .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Event ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Event .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Thing ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Thing .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Sample ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Sample .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:DomainEntity ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:DomainEntity .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:StudyHypothesis ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:StudyHypothesis .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:EnvironmentalMaterial ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:EnvironmentalMaterial .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Observation ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Observation .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Agent ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Agent .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:StudyDesign ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:StudyDesign .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Organism ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Organism .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:UnitConcept ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:UnitConcept .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:InvestigativeProtocol ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:InvestigativeProtocol .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:QuantityKind ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:QuantityKind .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:StudyResult ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:StudyResult .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://w3id.org/linkml-common/Patient> ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom <https://w3id.org/linkml-common/Patient> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Concept ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Concept .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://w3id.org/linkml-common/HealthcareOrganization> ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom <https://w3id.org/linkml-common/HealthcareOrganization> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Procedure ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Procedure .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Observable ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Observable .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Organization ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Organization .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf <https://w3id.org/linkml-common/Cohort> ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom <https://w3id.org/linkml-common/Cohort> .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:Dataset ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:Dataset .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:InvestigationSite ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:InvestigationSite .
+
+[] a owl:Restriction ;
+    rdfs:subClassOf comet:InformationEntity ;
+    owl:onProperty comet:type ;
+    owl:someValuesFrom comet:InformationEntity .
+

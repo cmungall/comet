@@ -1,0 +1,1132 @@
+{
+    "$defs": {
+        "Agent": {
+            "additionalProperties": false,
+            "description": "Represents an Agent",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Agent"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Agent",
+            "type": "object"
+        },
+        "AttributeConcept": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "AttributeConcept"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AttributeConcept",
+            "type": "object"
+        },
+        "AttributeValue": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "attribute": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "numeric_value": {
+                    "description": "The numeric value of the observation",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "ratio": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Ratio"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The ratio of the value"
+                },
+                "target": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "unit": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value_range": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ValueRange"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The range of the value"
+                }
+            },
+            "title": "AttributeValue",
+            "type": "object"
+        },
+        "Concept": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Concept"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Concept",
+            "type": "object"
+        },
+        "Container": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "concepts": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Concept"
+                            },
+                            {
+                                "$ref": "#/$defs/UnitConcept"
+                            },
+                            {
+                                "$ref": "#/$defs/QuantityKind"
+                            },
+                            {
+                                "$ref": "#/$defs/AttributeConcept"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/$defs/Event"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "investigations": {
+                    "items": {
+                        "$ref": "#/$defs/Investigation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "observables": {
+                    "items": {
+                        "$ref": "#/$defs/Observable"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "observations": {
+                    "items": {
+                        "$ref": "#/$defs/Observation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "relationships": {
+                    "items": {
+                        "$ref": "#/$defs/Relationship"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Container",
+            "type": "object"
+        },
+        "DataObject": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "DataObject"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "DataObject",
+            "type": "object"
+        },
+        "Duration": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ends_at": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/TimePoint"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "happens_at": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/TimePoint"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "has_duration": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "is_ongoing_as_of": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/TimePoint"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "starts_at": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/TimePoint"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Duration"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Duration",
+            "type": "object"
+        },
+        "Event": {
+            "additionalProperties": false,
+            "description": "A thing that happens to and potentially causally influences one of more participants.",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_duration": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_participants": {
+                    "items": {
+                        "$ref": "#/$defs/ParticipantInRole"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Event"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Event",
+            "type": "object"
+        },
+        "Intangible": {
+            "additionalProperties": false,
+            "description": "",
+            "title": "Intangible",
+            "type": "object"
+        },
+        "Investigation": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_duration": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Investigation"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Investigation",
+            "type": "object"
+        },
+        "Location": {
+            "additionalProperties": false,
+            "description": "",
+            "title": "Location",
+            "type": "object"
+        },
+        "Observable": {
+            "additionalProperties": false,
+            "description": "A concrete or abstract entity that has been observed or measured. Examples include a person, a region of the earth, a cell type, a tree, a mountain.",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "properties": {
+                    "items": {
+                        "$ref": "#/$defs/AttributeValue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Observable"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Observable",
+            "type": "object"
+        },
+        "Observation": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_duration": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "is_about": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "part_of": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "result": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AttributeValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Observation"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Observation",
+            "type": "object"
+        },
+        "ParticipantInRole": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "participant": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "role": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ParticipantInRole",
+            "type": "object"
+        },
+        "QuantityKind": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "QuantityKind"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "QuantityKind",
+            "type": "object"
+        },
+        "Ratio": {
+            "additionalProperties": false,
+            "description": "A tuple of two quantities",
+            "properties": {
+                "denominator": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AttributeValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The denominator of the ratio"
+                },
+                "numerator": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AttributeValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The numerator of the ratio"
+                }
+            },
+            "title": "Ratio",
+            "type": "object"
+        },
+        "RelativeTimeEnum": {
+            "description": "",
+            "enum": [
+                "BEFORE",
+                "AFTER",
+                "AT_SAME_TIME_AS"
+            ],
+            "title": "RelativeTimeEnum",
+            "type": "string"
+        },
+        "Thing": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "Thing"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Thing",
+            "type": "object"
+        },
+        "TimePoint": {
+            "additionalProperties": false,
+            "description": "A point in time. Can be fully specified, or specified in relative terms.",
+            "properties": {
+                "date_value": {
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "datetime_value": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "marker_event": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "time_value": {
+                    "format": "time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "year_value": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "TimePoint",
+            "type": "object"
+        },
+        "UnitConcept": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "classification": {
+                    "description": "A precise classification of the thing, using a concept from an ontology, controlled vocabulary, thesaurus, or taxonomy. Some schema classes may choose to restrict the range of values which this slot can take, using `values_from`, or bindings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ontology_types": {
+                    "description": "A collection of concepts that help to classify the thing, using concepts from an ontolology,  thesaurus, or taxonomy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "type": {
+                    "description": "A type for a thing. The range of this should be a class within the schema. It is intended for schema-based classification. Anything beneath the shoreline of the schema should use `classification`.",
+                    "enum": [
+                        "UnitConcept"
+                    ],
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "UnitConcept",
+            "type": "object"
+        },
+        "ValueRange": {
+            "additionalProperties": false,
+            "description": "A quantity range is a property that can be measured or counted",
+            "properties": {
+                "lower_bound": {
+                    "description": "The lower bound of the range",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "upper_bound": {
+                    "description": "The upper bound of the range",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ValueRange",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/comet/core",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "",
+    "metamodel_version": "1.7.0",
+    "properties": {
+        "concepts": {
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Concept"
+                    },
+                    {
+                        "$ref": "#/$defs/UnitConcept"
+                    },
+                    {
+                        "$ref": "#/$defs/QuantityKind"
+                    },
+                    {
+                        "$ref": "#/$defs/AttributeConcept"
+                    }
+                ]
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "events": {
+            "items": {
+                "$ref": "#/$defs/Event"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "investigations": {
+            "items": {
+                "$ref": "#/$defs/Investigation"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "observables": {
+            "items": {
+                "$ref": "#/$defs/Observable"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "observations": {
+            "items": {
+                "$ref": "#/$defs/Observation"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "relationships": {
+            "items": {
+                "$ref": "#/$defs/Relationship"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "title": "comet-core",
+    "type": "object",
+    "version": null
+}
